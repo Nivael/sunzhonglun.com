@@ -1,0 +1,149 @@
+/* ============ 设计变量 ============ */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f7f7f5;
+  --text: rgba(0, 0, 0, .84);
+  --text-soft: rgba(0, 0, 0, .56);
+  --text-faint: rgba(0, 0, 0, .38);
+  --line: rgba(0, 0, 0, .08);
+  --accent: #147d64;
+  --accent-soft: rgba(20, 125, 100, .12);
+  --serif: "Source Serif 4", Georgia, "Songti SC", "Noto Serif SC", "Noto Serif CJK SC", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+[data-theme="dark"] {
+  --bg: #121212;
+  --bg-soft: #1c1c1c;
+  --text: rgba(255, 255, 255, .87);
+  --text-soft: rgba(255, 255, 255, .60);
+  --text-faint: rgba(255, 255, 255, .40);
+  --line: rgba(255, 255, 255, .10);
+  --accent: #4cc2a4;
+  --accent-soft: rgba(76, 194, 164, .16);
+}
+
+/* ============ 基础 ============ */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  transition: background .3s ease, color .3s ease;
+  -webkit-font-smoothing: antialiased;
+  animation: page-in .45s ease both;
+}
+@keyframes page-in { from { opacity: 0; } to { opacity: 1; } }
+::selection { background: var(--accent-soft); }
+a { color: inherit; text-decoration: none; }
+
+/* ============ 顶栏 ============ */
+.site-header {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.6rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-logo { font-family: var(--serif); font-weight: 700; font-size: 1.15rem; letter-spacing: .01em; }
+.site-header nav { display: flex; align-items: center; gap: 1.4rem; font-size: .92rem; color: var(--text-soft); }
+.site-header nav a { transition: color .2s; }
+.site-header nav a:hover { color: var(--text); }
+#theme-toggle {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-soft); padding: .35rem; display: flex;
+  border-radius: 50%; transition: color .2s, background .2s, transform .3s;
+}
+#theme-toggle:hover { color: var(--text); background: var(--bg-soft); transform: rotate(15deg); }
+.icon-sun { display: none; }
+[data-theme="dark"] .icon-sun { display: block; }
+[data-theme="dark"] .icon-moon { display: none; }
+
+/* ============ 首页 ============ */
+.hero { max-width: 44rem; margin: 0 auto; padding: 3.2rem 1.5rem .6rem; }
+.hero h1 { font-family: var(--serif); font-size: 2.1rem; line-height: 1.3; margin: 0 0 .9rem; }
+.hero p { color: var(--text-soft); line-height: 1.9; margin: 0; max-width: 36rem; font-size: 1.02rem; }
+.home-main { max-width: 44rem; margin: 0 auto; padding: 1.2rem 1.5rem 4rem; }
+.post-list { list-style: none; margin: 0; padding: 0; }
+.post-item { border-bottom: 1px solid var(--line); }
+.post-item a { display: block; padding: 2.1rem 0; }
+.post-item .post-meta { margin-bottom: .55rem; }
+.post-item h2 {
+  font-family: var(--serif);
+  font-size: 1.42rem; line-height: 1.45; margin: 0;
+  display: inline;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 2px; background-repeat: no-repeat; background-position: 0 100%;
+  transition: background-size .35s cubic-bezier(.2, .6, .2, 1);
+}
+.post-item a:hover h2 { background-size: 100% 2px; }
+.post-excerpt { color: var(--text-soft); line-height: 1.85; margin: .6rem 0 0; font-size: .97rem; }
+
+/* ============ 通用元信息 ============ */
+.post-meta { font-size: .84rem; color: var(--text-faint); letter-spacing: .04em; }
+
+/* ============ 文章页 ============ */
+.post { max-width: 44rem; margin: 0 auto; padding: 2.6rem 1.5rem 4.5rem; }
+.post-header h1 { font-family: var(--serif); font-size: 2.15rem; line-height: 1.4; margin: 0 0 .8rem; }
+.post-header .post-meta { margin-bottom: 2.8rem; }
+.post-content { font-family: var(--serif); font-size: 1.15rem; line-height: 2.05; letter-spacing: .012em; }
+.post-content p { margin: 1.55em 0; }
+.post-content h2 { font-size: 1.5rem; line-height: 1.5; margin: 2.4em 0 .9em; }
+.post-content h3 { font-size: 1.22rem; line-height: 1.5; margin: 2.2em 0 .8em; }
+.post-content img { max-width: 100%; height: auto; border-radius: 6px; display: block; margin: 2.2em auto; }
+.post-content blockquote {
+  margin: 2em 0; padding: .1em 0 .1em 1.3em;
+  border-left: 3px solid var(--accent);
+  color: var(--text-soft);
+}
+.post-content blockquote p { margin: .8em 0; }
+.post-content ul, .post-content ol { padding-left: 1.4em; margin: 1.5em 0; }
+.post-content li { margin: .5em 0; }
+.post-content hr { border: none; border-top: 1px solid var(--line); margin: 3em auto; max-width: 6rem; }
+.post-content a { border-bottom: 1px solid var(--accent); transition: background .2s; }
+.post-content a:hover { background: var(--accent-soft); }
+.post-content pre {
+  font-family: var(--mono); font-size: .84rem; line-height: 1.75;
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 8px;
+  padding: 1.2em 1.4em; overflow-x: auto;
+}
+.post-content code { font-family: var(--mono); font-size: .86em; background: var(--bg-soft); padding: .15em .45em; border-radius: 4px; }
+.post-content pre code { background: none; padding: 0; font-size: 1em; }
+.post-footer { margin-top: 4rem; }
+.post-footer .back { font-size: .92rem; color: var(--text-soft); transition: color .2s, transform .2s; display: inline-block; }
+.post-footer .back:hover { color: var(--accent); transform: translateX(-3px); }
+
+/* ============ 页脚 ============ */
+.site-footer {
+  max-width: 44rem; margin: 0 auto;
+  padding: 2.2rem 1.5rem 3rem;
+  border-top: 1px solid var(--line);
+  color: var(--text-faint); font-size: .84rem;
+}
+.site-footer a:hover { color: var(--text); }
+
+/* ============ 阅读进度条 ============ */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 10; pointer-events: none; }
+.progress__bar { height: 100%; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); }
+
+/* ============ 滚动渐现 ============ */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .65s cubic-bezier(.2, .6, .2, 1), transform .65s cubic-bezier(.2, .6, .2, 1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* ============ 无障碍 ============ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ============ 移动端 ============ */
+@media (max-width: 540px) {
+  .hero h1 { font-size: 1.7rem; }
+  .post-header h1 { font-size: 1.65rem; }
+  .post-content { font-size: 1.06rem; }
+  .post-item h2 { font-size: 1.25rem; }
+}
