@@ -5,9 +5,12 @@ import site from '../../site.json';
 interface Props {
   title: string;
   description: string;
+  /** og:type，文章页传 'article'，其余默认 'website' */
+  ogType?: string;
 }
-const { title, description } = Astro.props;
+const { title, description, ogType = 'website' } = Astro.props;
 const year = new Date().getFullYear();
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
 <html lang="zh-CN">
@@ -16,7 +19,16 @@ const year = new Date().getFullYear();
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content={description}>
+<link rel="canonical" href={canonical}>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:type" content={ogType}>
+<meta property="og:url" content={canonical}>
+<meta property="og:site_name" content={site.title}>
+<meta name="twitter:card" content="summary">
 <link rel="alternate" type="application/rss+xml" title={site.title} href="/feed.xml">
+<link rel="sitemap" href="/sitemap-index.xml">
 <link rel="stylesheet" href="/assets/style.css">
 {/* 深色模式初始化必须内联在 head，防止首屏闪白 */}
 <script is:inline>(function(){try{var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>

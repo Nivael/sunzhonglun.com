@@ -74,6 +74,10 @@ npm run preview   预览构建产物
   RSS 手写端点复刻旧格式；关闭 Shiki 与 smartypants 保持排版口径。已删除 `templates/`、`scripts/`、
   `dist/`（旧产物）、`assets/`（被 `public/assets/` 取代），git 历史可找回。
   与旧站产物 diff 验证：仅链接改为绝对路径、标题新增 id 锚点、SVG 序列化差异三类预期变化。
+- **2026-07-13 v1.0 上线**：GitHub 公开仓库（Nivael/sunzhonglun.com，默认分支 main）+ Vercel
+  自动部署 + 域名 sunzhonglun.blog（.com 被抢注，详见 PRD §4.2）+ 基础 SEO
+  （@astrojs/sitemap、OG/canonical meta、favicon.svg、404 页、robots.txt）。
+  遗留：Vercel 跳转方向需翻转为 www → 裸域（PRD §4.5）。
 - **2026-07-13 撰写 PRD**（`docs/PRD.md`）：确立产品定位（portfolio + 写作存档）、版本路线图
   （v1.0 上线 → v1.1 迁移 92 篇公众号文章 → v1.2 设计升级 portfolio 化 → v1.3 视频页）、
   协作与版本规则、非目标清单。公众号迁移采用直接抓取为主 + computer use 兜底的混合方案。

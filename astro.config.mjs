@@ -1,9 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://sunzhonglun.blog',
   output: 'static',
+  integrations: [sitemap()],
   markdown: {
     // 保持与原 python-markdown 输出一致：
     // 不做代码高亮（样式全靠 style.css 的 pre/code 规则），
