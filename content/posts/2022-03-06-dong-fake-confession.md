@@ -1,6 +1,8 @@
 ---
 title: "董某民假自白"
 date: 2022-03-06
+quote: "农村在凋零，他们在生长。"
+excerpt: "一篇注明纯属虚构的假自白：铁链、称谓与美——替沉默的案卷补上阴影的声音。"
 ---
 
 ![](/assets/images/dong-fake-confession/01.jpg)

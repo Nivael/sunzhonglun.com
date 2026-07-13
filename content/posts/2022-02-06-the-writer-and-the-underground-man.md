@@ -1,6 +1,8 @@
 ---
 title: "作家与地下室人"
 date: 2022-02-06
+quote: "我的母题是话。"
+excerpt: "一个作家带着马斯洛金字塔走进地下室，采访一个不再出门的人。"
 ---
 
 ![](/assets/images/the-writer-and-the-underground-man/01.jpg)

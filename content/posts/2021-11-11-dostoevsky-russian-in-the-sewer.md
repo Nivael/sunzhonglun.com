@@ -1,6 +1,8 @@
 ---
 title: "陀思妥耶夫斯基——下水道里的俄罗斯人"
 date: 2021-11-11
+quote: "只有魔鬼想要辩论——耶稣只是听，并宽恕他。"
+excerpt: "为陀思妥耶夫斯基二百岁生日写的长文：从谢苗诺夫刑场到《宗教大法官》的四个时刻。"
 ---
 
 **![](/assets/images/dostoevsky-russian-in-the-sewer/01.jpg)**

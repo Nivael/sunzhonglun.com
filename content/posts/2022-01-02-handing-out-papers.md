@@ -1,6 +1,8 @@
 ---
 title: "发卷子"
 date: 2022-01-02
+quote: "公平的电风扇将赐予他们每个人永恒的暑假。"
+excerpt: "老师抱着一叠卷子走上讲台——一个小学生低头等待宣判的两分钟。"
 ---
 
 ![](/assets/images/handing-out-papers/01.jpg)

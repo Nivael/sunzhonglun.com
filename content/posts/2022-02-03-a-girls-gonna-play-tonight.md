@@ -1,6 +1,8 @@
 ---
 title: "A Girl's Gonna Play Tonight"
 date: 2022-02-03
+quote: "她没有回复。于是你又问她，可以吗？"
+excerpt: "除夕夜独自留在出租屋的女人宣布：今晚要大玩一场。"
 ---
 
 ![](/assets/images/a-girls-gonna-play-tonight/01.jpg)
