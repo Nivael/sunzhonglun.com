@@ -1,6 +1,8 @@
 ---
 title: "Jazz 4: 跳舞旅行"
 date: 2026-02-02
+quote: "延长和支持生命的事物很多，使生命更加开阔的事物很少，很稀有。"
+excerpt: "爵士组曲第四首：因为跳舞去旅行——从伊斯坦布尔到 Herrang，两年画了一个圈。"
 ---
 
 ![](/assets/images/jazz-4-dance-travel/01.jpg)

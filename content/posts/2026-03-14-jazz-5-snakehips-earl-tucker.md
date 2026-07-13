@@ -1,6 +1,8 @@
 ---
 title: "Jazz 5: 蛇臀 Earl Tucker"
 date: 2026-03-14
+quote: "他感到白天不属于他，蛇臀只在夜晚出动。"
+excerpt: "爵士组曲第五首：哈莱姆传奇舞者蛇臀塔克的一生——从宗教抽搐到猫王的胯部。"
 ---
 
 ![](/assets/images/jazz-5-snakehips-earl-tucker/01.jpg)
