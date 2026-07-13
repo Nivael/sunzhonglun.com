@@ -116,7 +116,7 @@ URL 清单 (92 条)
 
 | 阶段 | 内容 | 验收 |
 |------|------|------|
-| 阶段 0 | 从公众号后台「发表记录」页（`mp.weixin.qq.com/cgi-bin/appmsgpublish`）爬取 92 篇清单，**每篇含：URL + 标题 + 原发表时间**，存 `docs/migration/articles.json`。需要用户在 Chrome 保持登录态 + Claude 浏览器扩展已连接 | 清单齐、无重复、每篇都有发表时间 |
+| 阶段 0 | 导出 92 篇清单，**每篇含：URL + 标题 + 原发表时间**，存 `docs/migration/articles.json`。方式：用户在后台「发表记录」页控制台运行 `docs/migration/fetch-articles.js`（Claude 扩展安全策略不允许访问 mp.weixin.qq.com，已验证，浏览器自动化路线不可行） | 清单齐、无重复、每篇都有发表时间 |
 | 阶段 1 | 试点 3 篇（挑图多的、带引用的、纯文字的各一篇），人工逐篇校对 | 排版无破损，转换规则定稿 |
 | 阶段 2 | 批量迁移，每批约 10 篇，进度记录在 `docs/migration/checklist.md`（每篇：URL / slug / 状态 / 备注） | 每批构建通过 + 抽查 |
 | 阶段 3 | 全量校对收尾：日期、excerpt、slug 统一检查；删除 2 篇示例文章 | 92 篇全绿 |
