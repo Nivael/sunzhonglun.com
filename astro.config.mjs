@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://sunzhonglun.com',
+  site: 'https://sunzhonglun.blog',
   output: 'static',
   markdown: {
     // 保持与原 python-markdown 输出一致：
