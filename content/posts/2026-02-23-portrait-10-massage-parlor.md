@@ -1,6 +1,8 @@
 ---
 title: "Portrait 10: 按摩房"
 date: 2026-02-23
+quote: "痛苦是一种阻碍。"
+excerpt: "泰国考艾的万里挑一按摩店：一个胖女人、一条大狗，和不以疼痛为代价的治疗。"
 ---
 
 ![](/assets/images/portrait-10-massage-parlor/01.jpg)

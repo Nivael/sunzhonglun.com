@@ -1,6 +1,8 @@
 ---
 title: "短剧：我的首富老伴"
 date: 2025-06-04
+quote: "溺水的人，慌乱中抓住了航空母舰的桅杆。"
+excerpt: "拆解一部霸总短剧的三十分钟：谁在被侮辱，谁付了 19.9 元。"
 ---
 
 ![](/assets/images/my-billionaire-spouse/01.jpg)

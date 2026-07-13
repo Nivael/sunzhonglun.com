@@ -1,6 +1,8 @@
 ---
 title: "Portrait 11: 游戏机"
 date: 2026-03-31
+quote: "在它滑走的过程中，去感受沙粒摩擦皮肤的触感，去全心全意地注视它。"
+excerpt: "他和一个 AI 谈起 2003 年肯德基儿童套餐里的游戏机——他最后一次感到幸福。"
 ---
 
 ![](/assets/images/portrait-11-game-console/01.jpg)

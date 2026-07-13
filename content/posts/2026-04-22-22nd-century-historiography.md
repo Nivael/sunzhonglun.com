@@ -1,6 +1,8 @@
 ---
 title: "22世纪历史学"
 date: 2026-04-22
+quote: "历史即个人，个人即童年！"
+excerpt: "22 世纪，历史学已成奢侈品：一个老历史学家追查那场世界大战里按下按钮的人。"
 ---
 
 ![](/assets/images/22nd-century-historiography/01.jpg)

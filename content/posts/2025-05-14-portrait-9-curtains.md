@@ -1,6 +1,8 @@
 ---
 title: "Portrait 9: 窗帘"
 date: 2025-05-14
+quote: "丑陋是一种报复，就像罢工那样。"
+excerpt: "从一幅马戏团配色的定制窗帘讲起：关于房子、母亲与隐私的独白。"
 ---
 
 ![](/assets/images/portrait-9-curtains/01.jpg)
