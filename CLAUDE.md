@@ -67,10 +67,11 @@ npm run preview   预览构建产物
 
 ## 迭代记录
 
-- **2026-07-13 v1.1 公众号迁移（76/77）**：全量正文 HTML 本地缓存 → `wechat2md.py` 批量转换
+- **2026-07-13 v1.1 公众号迁移完成（76 篇）**：全量正文 HTML 本地缓存 → `wechat2md.py` 批量转换
   （含图片压缩 JPEG q82/限宽 1400 与全站懒加载），slug 映射见 `docs/migration/slugs.json`，
-  进度见 `docs/migration/checklist.md`。两篇示例占位文章已删除。
-  遗留：idx 31《银河之一日·下》被微信风控待补；全量校对待用户抽查。
+  进度见 `docs/migration/checklist.md`。两篇示例占位文章已删除。idx 31 经核实与 idx 30
+  为同一篇的重复发表记录，不迁移。每篇配 quote（原文最美一句）+ excerpt（trailer），
+  首页列表双行展示。PR #2 已由用户审阅合并。
 
 > 约定：每完成一次迭代，在此追加一条（日期 + 做了什么 + 关键决策），并同步更新上方相关章节。
 

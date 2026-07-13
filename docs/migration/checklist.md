@@ -33,7 +33,7 @@
 | 28 | 2023-04-01 | 纸巷 | paper-alley | ✅ |
 | 29 | 2023-03-04 | 焦躁的人 | the-restless-man | ✅ |
 | 30 | 2022-12-12 | 银河之一日 | a-day-in-the-galaxy | ✅ |
-| 31 | 2022-12-12 | 银河之一日 | a-day-in-the-galaxy-2 | ⬜ 风控待补 |
+| 31 | 2022-12-12 | 银河之一日 | — | ✅ 与 idx 30 重复（同一群发的两条记录），不迁移 |
 | 32 | 2022-11-12 | Downstairs | downstairs | ✅ |
 | 33 | 2022-08-28 | 农家乐王老板 | farmstay-boss-wang | ✅ |
 | 34 | 2022-08-27 | 作家受到袭击 | the-writer-is-attacked | ✅ |
