@@ -1,6 +1,8 @@
 ---
 title: "埃里克森教授"
 date: 2023-09-27
+quote: "万物都没有在闪耀，但所有闪耀的东西都在。"
+excerpt: "得知埃里克森教授去世的那天，重读十年的邮件——纪念一位教了五十三年书的老师。"
 ---
 
 ## ![](/assets/images/professor-erikson/01.jpg)

@@ -1,6 +1,8 @@
 ---
 title: "Portrait 4: Invisalign"
 date: 2023-12-21
+quote: "它通过无数的实验数据已经测量出不使你感到发烫的水温，你以为在泡澡直到你煮熟。"
+excerpt: "关于隐适美的社会学：一种让奴役最小程度被感知的现代方法。"
 ---
 
 ![](/assets/images/portrait-4-invisalign/01.jpg)

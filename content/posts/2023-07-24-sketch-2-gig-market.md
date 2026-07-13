@@ -1,6 +1,8 @@
 ---
 title: "Sketch 2: 零工市场"
 date: 2023-07-24
+quote: "在这里，文明摆出一个基本的骨架的姿态。"
+excerpt: "北京最大零工市场速写：寿衣一条街的尽头，等活的人骑在没有解锁的共享单车上。"
 ---
 
 ![](/assets/images/sketch-2-gig-market/01.jpg)

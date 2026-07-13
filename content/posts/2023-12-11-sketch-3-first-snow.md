@@ -1,6 +1,8 @@
 ---
 title: "Sketch 3: First Snow"
 date: 2023-12-11
+quote: "好像它们都是夜里奔跑的群星奔跑的胎记。"
+excerpt: "北京初雪那晚的酒吧速写：有人出门看雪，有人留在空地板上练习滑步。"
 ---
 
 ![](/assets/images/sketch-3-first-snow/01.jpg)

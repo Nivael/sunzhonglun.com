@@ -1,6 +1,8 @@
 ---
 title: "Sketch 4: 高速公路"
 date: 2023-12-24
+quote: "现在一切都清晰了唯独你模糊。"
+excerpt: "圣诞前夜听到 Norah Jones，回到童年帕萨特的后座——妈妈坐在副驾，光是金色的。"
 ---
 
 ![](/assets/images/sketch-4-highway/01.jpg)

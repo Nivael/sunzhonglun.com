@@ -1,6 +1,8 @@
 ---
 title: "Portrait 3: 人字梯"
 date: 2023-07-17
+quote: "我把蛋糕一切为二的时候，H说，这是他这辈子第一次吃生日蛋糕。"
+excerpt: "重访在工厂认识的朋友 H：人字梯上的手艺、九十块的气垫床，和一个切成两半的蛋糕。"
 ---
 
 ![](/assets/images/portrait-3-stepladder/01.jpg)

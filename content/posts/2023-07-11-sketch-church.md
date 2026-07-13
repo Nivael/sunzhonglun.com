@@ -1,6 +1,8 @@
 ---
 title: "Sketch: 教堂"
 date: 2023-07-11
+quote: "我问其中一位，我们这是要去哪里。他说，海底。"
+excerpt: "在广州看两座教堂：洪秀全的假梦、叶名琛的忠诚，和一个被拦在门外的旅人。"
 ---
 
 ![](/assets/images/sketch-church/01.jpg)
