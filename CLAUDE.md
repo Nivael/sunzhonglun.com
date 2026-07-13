@@ -70,6 +70,12 @@ npm test          单元测试（vitest，覆盖 src/lib/posts.ts）
 
 ## 迭代记录
 
+- **2026-07-13 v1.2 portfolio 化**：左侧栏（首页/分类页，≥1080px）+ 四分类
+  （Jazz/Portrait/Sketch/文，标题推导，vitest 覆盖）+ 新 hero
+  （"Hi there, I'm Zhonglun, and I write."）+ 分类归档页与 /categories/ 总览。
+  文章页阅读版心零改动。精选区暂缓（PRD §6.3）。侧栏「视频」入口待 v1.3 上线时加。
+  组件化：Header/Footer/ThemeToggle/Sidebar/PostList。PR #3 用户审阅合并。
+
 - **2026-07-13 v1.1 公众号迁移完成（76 篇）**：全量正文 HTML 本地缓存 → `wechat2md.py` 批量转换
   （含图片压缩 JPEG q82/限宽 1400 与全站懒加载），slug 映射见 `docs/migration/slugs.json`，
   进度见 `docs/migration/checklist.md`。两篇示例占位文章已删除。idx 31 经核实与 idx 30
