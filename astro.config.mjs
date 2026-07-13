@@ -2,6 +2,18 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
+/** 正文图片懒加载：图多的文章不拖累首屏（自写 rehype 插件，避免引依赖） */
+function rehypeLazyImages() {
+  /** @param {any} node */
+  const walk = (node) => {
+    if (node.tagName === 'img') {
+      node.properties = { ...node.properties, loading: 'lazy', decoding: 'async' };
+    }
+    (node.children || []).forEach(walk);
+  };
+  return (/** @type {any} */ tree) => walk(tree);
+}
+
 export default defineConfig({
   site: 'https://sunzhonglun.blog',
   output: 'static',
@@ -12,5 +24,6 @@ export default defineConfig({
     // 不做智能引号替换（避免改动正文标点）。
     syntaxHighlight: false,
     smartypants: false,
+    rehypePlugins: [rehypeLazyImages],
   },
 });
