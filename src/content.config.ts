@@ -8,6 +8,7 @@ const posts = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     excerpt: z.string().optional(),
+    quote: z.string().optional(), // 原文最美一句，首页预览位展示
   }),
 });
 

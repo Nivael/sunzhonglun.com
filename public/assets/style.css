@@ -80,7 +80,8 @@ a { color: inherit; text-decoration: none; }
   transition: background-size .35s cubic-bezier(.2, .6, .2, 1);
 }
 .post-item a:hover h2 { background-size: 100% 2px; }
-.post-excerpt { color: var(--text-soft); line-height: 1.85; margin: .6rem 0 0; font-size: .97rem; }
+.post-quote { font-family: var(--serif); color: var(--text); line-height: 1.9; margin: .65rem 0 0; font-size: 1.02rem; }
+.post-excerpt { color: var(--text-faint); line-height: 1.85; margin: .45rem 0 0; font-size: .92rem; }
 
 /* ============ 通用元信息 ============ */
 .post-meta { font-size: .84rem; color: var(--text-faint); letter-spacing: .04em; }
