@@ -1,6 +1,8 @@
 ---
 title: "Sketch 7: 爱情生活"
 date: 2026-06-11
+quote: "她很难辨认自己处在痛苦还是不痛苦中。"
+excerpt: "爱情速写：起初，他的无知吸引她。"
 ---
 
 ![](/assets/images/sketch-7-love-life/01.jpg)

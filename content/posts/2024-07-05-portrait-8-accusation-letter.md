@@ -1,6 +1,8 @@
 ---
 title: "Portrait 8: 检举信"
 date: 2024-07-05
+quote: "我是无辜的。无辜的人会继续活着。"
+excerpt: "一封写给审查员的检举信：三代女人，一台缝纫机，和摆回来的历史钟摆。"
 ---
 
 ![](/assets/images/portrait-8-accusation-letter/01.jpg)
