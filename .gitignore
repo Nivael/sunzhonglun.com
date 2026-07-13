@@ -2,3 +2,4 @@
 node_modules/
 .astro/
 dist/
+docs/migration/html-cache/
