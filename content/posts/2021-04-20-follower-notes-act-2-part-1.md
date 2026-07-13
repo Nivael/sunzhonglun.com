@@ -1,6 +1,8 @@
 ---
 title: "《追随者手记》第二幕——上篇"
 date: 2021-04-20
+quote: "像梦里一首忘却的诗。像故乡的雪落在舌尖。"
+excerpt: "第二幕上：米嘉横渡大西洋追随加里波第，在弹尽粮绝的废墟里得到一个吻。"
 ---
 
 ![](/assets/images/follower-notes-act-2-part-1/01.jpg)

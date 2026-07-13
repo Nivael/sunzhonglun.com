@@ -1,6 +1,8 @@
 ---
 title: "《追随者手记》第二幕——下篇"
 date: 2021-04-21
+quote: "可人建造的什么不是空中楼阁？"
+excerpt: "第二幕下：罗马陷落，阿妮塔死去——米嘉在天京城门口喊出：我还会做火药。"
 ---
 
 ![](/assets/images/follower-notes-act-2-part-2/01.jpg)

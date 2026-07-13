@@ -1,6 +1,8 @@
 ---
 title: "《追随者手记》第三幕——终章"
 date: 2021-04-27
+quote: "像一个孩子走进树林，寻找他童年的花冠。"
+excerpt: "终章：圣书是假的，天王要自己写一本——米嘉逃出天京，去大渡河边赴最后一场追随。"
 ---
 
 ![](/assets/images/follower-notes-act-3-finale/01.jpg)
