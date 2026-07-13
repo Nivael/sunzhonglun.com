@@ -3,7 +3,8 @@
 ## 项目背景
 
 Zhonglun 的个人 portfolio 网站 + 写作存档，收录 92 篇过往微信公众号文章 + 之后的新写作，后续加视频页。
-站点基于 **Astro 5** 静态生成（`output: 'static'`），部署目标 Vercel，域名 sunzhonglun.com。
+站点基于 **Astro 5** 静态生成（`output: 'static'`），部署在 Vercel，域名 **sunzhonglun.blog**
+（原属意的 sunzhonglun.com 已被他人持有，见 PRD §4.2；本地目录与 GitHub 仓库名仍叫 sunzhonglun.com，勿混淆）。
 
 **需求与路线图见 [docs/PRD.md](docs/PRD.md)**——它是唯一需求源，功能不在 PRD 里先改 PRD 再动手；
 协作规则、版本规则也在 PRD §8/§9。

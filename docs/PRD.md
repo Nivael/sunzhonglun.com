@@ -22,7 +22,9 @@ Zhonglun 的个人 portfolio 网站 + 写作存档：
 - Astro 5 静态站已就绪（v0 基础站，2026-07-12 从 Python 生成器迁移完成）
 - 内容：2 篇示例占位文章 + 关于页
 - 设计：Medium 式极简，单栏 44rem，无侧栏，顶栏只有 文章/关于/主题切换
-- 未部署，无远程仓库（纯本地 git），域名未购买
+- ~~未部署，无远程仓库（纯本地 git），域名未购买~~ → 2026-07-13：GitHub 公开仓库
+  [Nivael/sunzhonglun.com](https://github.com/Nivael/sunzhonglun.com) 已建并推送；Vercel 已部署；
+  域名 sunzhonglun.blog 已购，DNS 记录待在 Cloudflare 添加（见 §4.3）
 
 ---
 
@@ -50,16 +52,20 @@ Zhonglun 的个人 portfolio 网站 + 写作存档：
 
 ### 4.2 域名购买
 
-- 目标域名：`sunzhonglun.com`（site.json 已按此配置）。
-- 注册商：**Cloudflare Registrar**（用户已确认）。成本价续费、免费 WHOIS 隐私、DNS 一并解决。
+- **正式域名：`sunzhonglun.blog`**（2026-07-13 已在 Cloudflare Registrar 购入）。
+- 原属意的 `sunzhonglun.com`（用户早年注册后过期释放）已于 2025-07-01 被抢注
+  （注册商 Cloud Yuqu LLC，NS 停放在 domain-expired 页，2027-07 到期）——
+  属于域名商人待售状态，将来可在聚名/西部数码等交易平台尝试回购，回购成功后再做 301 迁移，
+  站点架构上只需改 site.json 与 astro.config 各一行。
 - 站点部署在海外（Vercel），**不需要 ICP 备案**。
-- 购买和 DNS 授权需要用户本人操作（涉及支付与账号），Claude 提供逐步指引。
 
 ### 4.3 Vercel 部署
 
 - 免费版足够：静态站、全球 CDN、git push 自动部署。
-- 配置：Framework = Astro（自动识别），构建命令 `npm run build`，输出 `dist/`。
-- 域名绑定：`sunzhonglun.com` 为主域名，`www` 301 到裸域。
+- 配置：Framework = Astro（自动识别），构建命令 `npm run build`，输出 `dist/`。（2026-07-13 已部署）
+- 域名绑定：`sunzhonglun.blog` 与 `www.sunzhonglun.blog`，在 Cloudflare DNS 各加一条 CNAME
+  指向 Vercel 提供的目标值，**代理关闭（灰云 DNS only）**。主域名与 www 的重定向方向在 Vercel
+  Domains 里配置，取裸域为主。
 - 预览环境：每个 PR 自动生成 preview URL，作为设计/内容改动的验收入口。
 
 ### 4.4 基础 SEO 与站点设施
@@ -73,7 +79,7 @@ Zhonglun 的个人 portfolio 网站 + 写作存档：
 
 ### 4.5 验收标准
 
-- [ ] https://sunzhonglun.com 可访问，HTTPS 正常，www 跳转裸域
+- [ ] https://sunzhonglun.blog 可访问，HTTPS 正常，www 跳转裸域
 - [ ] push 到 main 后自动部署成功
 - [ ] feed.xml、sitemap.xml 可访问；Google Search Console 提交收录
 - [ ] Lighthouse 移动端 Performance ≥ 95（当前站体量应轻松达标）
