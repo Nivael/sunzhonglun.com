@@ -34,9 +34,13 @@
       if (!item.publish_info) continue;
       const info = JSON.parse(decode(item.publish_info));
       const ts = info.sent_info && info.sent_info.time; // 发表时间（unix 秒）
-      for (const a of info.appmsgex || []) {
+      // 新版「发表」记录文章在 appmsgex（链接字段 link）；
+      // 旧版「群发」记录（type 9）在 appmsg_info（链接字段 content_url）
+      const arts = info.appmsgex || info.appmsg_info || [];
+      for (const a of arts) {
+        if (a.is_deleted) continue; // 跳过已删除的文章
         const t = ts || a.create_time;
-        out.push({ title: a.title, url: a.link, publish_ts: t, date: toDate(t) });
+        out.push({ title: a.title, url: a.link || a.content_url, publish_ts: t, date: toDate(t) });
       }
     }
     console.log(`进度：${Math.min(begin + 10, total)}/${total} 条发表记录，累计 ${out.length} 篇文章`);
