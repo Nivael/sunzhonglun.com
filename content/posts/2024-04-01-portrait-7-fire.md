@@ -1,6 +1,8 @@
 ---
 title: "Portrait 7: 火"
 date: 2024-04-01
+quote: "我想所有人都还是死得过于早了。他们都应该多看一眼。"
+excerpt: "悼念一个名字像火的女孩：她的房间还保留着原样，多肉植物爬出窗沿。"
 ---
 
 ![](/assets/images/portrait-7-fire/01.jpg)

@@ -1,6 +1,8 @@
 ---
 title: "Sketch 5: 越南"
 date: 2024-03-09
+quote: "人们从尸腐中寻找咸鲜。然后等待。"
+excerpt: "河内到顺化的旅行手记：一碗炖了八小时的汤，和一个炖了四百年的国家。"
 ---
 
 ![](/assets/images/sketch-5-vietnam/01.png)

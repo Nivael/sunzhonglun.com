@@ -1,6 +1,8 @@
 ---
 title: "Portrait 5: 小便池"
 date: 2023-12-27
+quote: "但或许他在厕所外的生活，都被系在小便池里。"
+excerpt: "从杜尚的喷泉到火车站的瀑布：一部小便池的城市观察史。"
 ---
 
 ![](/assets/images/portrait-5-urinal/01.jpg)

@@ -1,6 +1,8 @@
 ---
 title: "Jazz 1:  自慰颂歌"
 date: 2024-04-06
+quote: "没有什么耻辱能穿透我了，我是无产者，是无套裤汉。"
+excerpt: "爵士组曲第一首：一个手淫者的昼与夜，卑微与称王。"
 ---
 
 ![](/assets/images/jazz-1-ode-to-onanism/01.jpg)

@@ -1,6 +1,8 @@
 ---
 title: "Portrait 6: 大雾天"
 date: 2024-02-08
+quote: "我无法感受爱，除非它已永远过去了。"
+excerpt: "海南的大雾天里回想一场旧爱：五次见面，一个改变彼此的时刻，和一个充电宝。"
 ---
 
 ![](/assets/images/portrait-6-foggy-day/01.jpg)

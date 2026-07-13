@@ -1,6 +1,8 @@
 ---
 title: "Jazz 2: 俄耳甫斯"
 date: 2024-06-07
+quote: "美即残缺。美即丑的渗透。美即伤痕。"
+excerpt: "爵士组曲第二首：俄耳甫斯长诗——舞池版的地狱往返。"
 ---
 
 ![](/assets/images/jazz-2-orpheus/01.jpg)
