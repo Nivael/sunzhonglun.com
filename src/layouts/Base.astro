@@ -5,6 +5,9 @@ import site from '../../site.json';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import Sidebar from '../components/Sidebar.astro';
+// 样式经 Astro 打包产出内容哈希文件名——Vercel 对静态资源发 immutable 缓存，
+// 固定路径会让老访客拿到旧 CSS（v1.2 上线时踩过），哈希路径每次部署自动失效
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -34,7 +37,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <meta name="twitter:card" content="summary">
 <link rel="alternate" type="application/rss+xml" title={site.title} href="/feed.xml">
 <link rel="sitemap" href="/sitemap-index.xml">
-<link rel="stylesheet" href="/assets/style.css">
 {/* 深色模式初始化必须内联在 head，防止首屏闪白 */}
 <script is:inline>(function(){try{var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 </head>
@@ -56,6 +58,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <Footer />
   </Fragment>
 )}
-<script is:inline src="/assets/main.js"></script>
+<script src="../scripts/main.js"></script>
 </body>
 </html>
