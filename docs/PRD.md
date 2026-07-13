@@ -35,7 +35,7 @@ Zhonglun 的个人 portfolio 网站 + 写作存档：
 | 版本 | 内容 | 状态 |
 |------|------|------|
 | v0 | Astro 迁移（基础站） | ✅ 2026-07-12 |
-| v1.0 | 上线：GitHub 仓库 + Vercel 部署 + 域名 + 基础 SEO | 🔨 |
+| v1.0 | 上线：GitHub 仓库 + Vercel 部署 + 域名 + 基础 SEO | ✅ 2026-07-13 |
 | v1.1 | 公众号 92 篇文章迁移 | ⬜ |
 | v1.2 | 设计升级：portfolio 化（顶栏 + 侧栏 + 新首页） | ⬜ |
 | v1.3 | 视频页 | ⬜ |
@@ -79,10 +79,13 @@ Zhonglun 的个人 portfolio 网站 + 写作存档：
 
 ### 4.5 验收标准
 
-- [ ] https://sunzhonglun.blog 可访问，HTTPS 正常，www 跳转裸域
-- [ ] push 到 main 后自动部署成功
-- [ ] feed.xml、sitemap.xml 可访问；Google Search Console 提交收录
-- [ ] Lighthouse 移动端 Performance ≥ 95（当前站体量应轻松达标）
+- [x] https://sunzhonglun.blog 可访问，HTTPS 正常（2026-07-13 验证 200）
+- [x] push 到 main 后自动部署成功
+- [x] feed.xml、sitemap.xml、robots.txt、favicon、404、OG meta 就绪
+- [ ] 跳转方向翻转：目前是裸域 308 → www，需在 Vercel Domains 里改为 www → 裸域
+  （canonical/sitemap/OG 均按裸域生成，保持一致）——**用户在 Vercel 点一下 Edit 即可**
+- [ ] Google Search Console 提交收录（用户操作，可选、不阻塞）
+- [ ] Lighthouse 移动端 Performance ≥ 95（待测，不阻塞）
 
 ---
 
