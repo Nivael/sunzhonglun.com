@@ -16,9 +16,11 @@ content/posts/        文章，markdown，文件名 YYYY-MM-DD-slug.md
 content/about.md      关于页
 public/assets/        style.css / main.js / images/（原样拷贝，不经打包）
 src/content.config.ts 内容集合定义（glob loader 指向 content/，复用现有 frontmatter）
-src/layouts/Base.astro 页面骨架（顶栏、页脚、主题脚本、进度条）
-src/pages/            index / posts/[slug] / about / feed.xml.ts
-src/lib/posts.ts      阅读时长、摘要提取、slug、日期格式（与旧构建脚本口径一致）
+src/layouts/Base.astro 页面骨架（sidebar=true 时为侧栏双栏形态，默认极简顶栏）
+src/components/       Header / Footer / ThemeToggle / Sidebar / PostList
+src/pages/            index / posts/[slug] / category/[slug] / categories / about / feed.xml.ts
+src/lib/posts.ts      阅读时长、摘要、slug、日期格式、分类推导（categoryFromTitle）
+tests/                vitest 单元测试（npm test）
 site.json             站点标题、简介、域名
 astro.config.mjs      关闭 Shiki 高亮与 smartypants（保持排版口径，勿开）
 ```
@@ -34,6 +36,7 @@ URL slug = frontmatter `slug`，否则文件名去掉日期前缀。
 npm run dev       开发预览（localhost:4321）
 npm run build     构建到 dist/（已 gitignore）
 npm run preview   预览构建产物
+npm test          单元测试（vitest，覆盖 src/lib/posts.ts）
 ```
 
 ## 设计规范（改动时必须保留）

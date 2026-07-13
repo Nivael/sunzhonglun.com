@@ -1,15 +1,20 @@
 ---
-// 页面骨架：对应原 templates/base.html，结构与类名保持一致
+// 页面骨架。sidebar=true 时（首页/分类页）为左侧栏 + 内容区的双栏形态，
+// ≥1080px 显示侧栏并隐藏顶栏；窄屏与其余页面均为极简顶栏形态。
 import site from '../../site.json';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import Sidebar from '../components/Sidebar.astro';
 
 interface Props {
   title: string;
   description: string;
   /** og:type，文章页传 'article'，其余默认 'website' */
   ogType?: string;
+  /** 左侧栏形态（首页与分类页） */
+  sidebar?: boolean;
 }
-const { title, description, ogType = 'website' } = Astro.props;
-const year = new Date().getFullYear();
+const { title, description, ogType = 'website', sidebar = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -35,19 +40,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 </head>
 <body>
 <div class="progress" aria-hidden="true"><div class="progress__bar"></div></div>
-<header class="site-header">
-  <a class="site-logo" href="/">{site.title}</a>
-  <nav>
-    <a href="/">文章</a>
-    <a href="/about/">关于</a>
-    <button id="theme-toggle" aria-label="切换深色模式">
-      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-    </button>
-  </nav>
-</header>
-<slot />
-<footer class="site-footer">© {year} {site.title} · <a href="/feed.xml">RSS</a></footer>
+{sidebar ? (
+  <div class="shell">
+    <Sidebar />
+    <div class="content">
+      <Header />
+      <slot />
+      <Footer />
+    </div>
+  </div>
+) : (
+  <Fragment>
+    <Header />
+    <slot />
+    <Footer />
+  </Fragment>
+)}
 <script is:inline src="/assets/main.js"></script>
 </body>
 </html>

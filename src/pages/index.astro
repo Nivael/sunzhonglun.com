@@ -1,26 +1,18 @@
 ---
-// 首页：hero + 文章列表，对应原 build.py 的首页拼装
+// 首页：portfolio 形态（侧栏 + hero 一句话 + 最新列表）
 import { getCollection } from 'astro:content';
+import PostList from '../components/PostList.astro';
 import Base from '../layouts/Base.astro';
 import site from '../../site.json';
-import { sortPostsDesc, postSlug, excerptOf, readingMinutes, dateISO } from '../lib/posts';
+import { sortPostsDesc } from '../lib/posts';
 
 const posts = sortPostsDesc(await getCollection('posts'));
 ---
-<Base title={site.title} description={site.description}>
-  <section class="hero reveal"><h1>{site.title}</h1><p>{site.description}</p></section>
+<Base title={site.title} description={site.description} sidebar>
+  <section class="hero reveal">
+    <h1>Hi there, I'm Zhonglun, and <em>I write.</em></h1>
+  </section>
   <main class="home-main">
-    <ul class="post-list">
-      {posts.map((p) => (
-        <li class="post-item reveal">
-          <a href={`/posts/${postSlug(p)}/`}>
-            <div class="post-meta">{dateISO(p.data.date)} · 约 {readingMinutes(p.body ?? '')} 分钟</div>
-            <h2>{p.data.title}</h2>
-            {p.data.quote && <p class="post-quote">「{p.data.quote}」</p>}
-            <p class="post-excerpt">{excerptOf(p)}</p>
-          </a>
-        </li>
-      ))}
-    </ul>
+    <PostList posts={posts} />
   </main>
 </Base>

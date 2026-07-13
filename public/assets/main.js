@@ -1,13 +1,12 @@
 (function () {
-  // 深色模式切换
-  var toggle = document.getElementById('theme-toggle');
-  if (toggle) {
+  // 深色模式切换（顶栏与侧栏可能各有一个按钮）
+  document.querySelectorAll('.theme-toggle').forEach(function (toggle) {
     toggle.addEventListener('click', function () {
       var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch (e) {}
     });
-  }
+  });
 
   // 滚动渐现
   var els = document.querySelectorAll('.reveal');
