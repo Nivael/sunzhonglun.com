@@ -1,6 +1,8 @@
 ---
 title: "June Portrait 2: The Blue Replica"
 date: 2023-06-22
+quote: "我们行走留下脚印 / 脚印不会成为我们的负担 / 却会成为你的。"
+excerpt: "六月人像之二：写给一辆共享单车的诗——蓝色的复制品情人。"
 ---
 
 ![](/assets/images/june-portrait-2-the-blue-replica/01.jpg)

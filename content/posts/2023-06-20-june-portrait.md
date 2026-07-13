@@ -1,6 +1,8 @@
 ---
 title: "June Portrait"
 date: 2023-06-20
+quote: "脆弱有强大的引力。"
+excerpt: "六月人像速写之一：舞蹈教室里那位有着最脆弱面庞的男士。"
 ---
 
 ![](/assets/images/june-portrait/01.jpg)

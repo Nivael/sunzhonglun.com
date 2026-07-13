@@ -1,6 +1,8 @@
 ---
 title: "吃餐巾纸的人"
 date: 2023-05-13
+quote: "人生于世，就在周而复始地受伤和康复。"
+excerpt: "对一个吃餐巾纸的人的全面考察：从指甲钳的咔擦声，到隐匿摄像头后的导演。"
 ---
 
 ![](/assets/images/the-napkin-eater/01.jpg)
