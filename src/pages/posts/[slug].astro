@@ -3,7 +3,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import site from '../../../site.json';
-import { postSlug, excerptOf, readingMinutes, dateISO } from '../../lib/posts';
+import { CATEGORIES, categoryOf, dateISO, excerptOf, postSlug, readingMinutes } from '../../lib/posts';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -12,12 +12,16 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const cat = categoryOf(post);
+const catSlug = CATEGORIES.find((c) => c.name === cat)!.slug;
 ---
 <Base title={`${post.data.title} — ${site.title}`} description={excerptOf(post)} ogType="article">
   <article class="post">
     <header class="post-header reveal">
       <h1>{post.data.title}</h1>
-      <div class="post-meta">{dateISO(post.data.date)} · 约 {readingMinutes(post.body ?? '')} 分钟</div>
+      <div class="post-meta">
+        {dateISO(post.data.date)} · <a class="cat" href={`/category/${catSlug}/`}>{cat}</a> · 约 {readingMinutes(post.body ?? '')} 分钟
+      </div>
     </header>
     <div class="post-content"><Content /></div>
     <footer class="post-footer"><a class="back" href="/">← 返回首页</a></footer>

@@ -1,0 +1,40 @@
+---
+// 左侧栏：仅首页与分类页使用（PRD §6.3），≥1080px 显示
+import { getCollection } from 'astro:content';
+import site from '../../site.json';
+import { CATEGORIES, categoryOf } from '../lib/posts';
+import ThemeToggle from './ThemeToggle.astro';
+
+const posts = await getCollection('posts');
+const counts = new Map<string, number>();
+for (const p of posts) {
+  const c = categoryOf(p);
+  counts.set(c, (counts.get(c) ?? 0) + 1);
+}
+const path = Astro.url.pathname;
+---
+<aside class="sidebar">
+  <div class="side-id">
+    <div class="avatar">S</div>
+    <div class="name">{site.title}</div>
+    <div class="bio">I write.</div>
+  </div>
+  <nav class="side-nav">
+    <div class="side-label">导航</div>
+    <a class={path === '/' ? 'current' : undefined} href="/">文章</a>
+    <a href="/about/">关于</a>
+  </nav>
+  <nav class="side-cats">
+    <div class="side-label">分类</div>
+    {CATEGORIES.map((c) => (
+      <a class={path.startsWith(`/category/${c.slug}`) ? 'current' : undefined} href={`/category/${c.slug}/`}>
+        {c.name}<b>{counts.get(c.name) ?? 0}</b>
+      </a>
+    ))}
+  </nav>
+  <div class="side-foot">
+    <a href="mailto:zhonglunsun@gmail.com">zhonglunsun@gmail.com</a>
+    <a href="/feed.xml">RSS</a>
+    <ThemeToggle />
+  </div>
+</aside>

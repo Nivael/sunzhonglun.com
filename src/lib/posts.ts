@@ -64,3 +64,32 @@ export function pubDate(date: Date): string {
 export function sortPostsDesc(posts: Post[]): Post[] {
   return [...posts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
+
+// ============================================================================
+// 分类：由标题推导（PRD §6.2.5），不加 frontmatter 字段——标题即分类
+// Jazz / Portrait / Sketch 由标题关键词识别（含 June Portrait 等变体），其余归「文」
+// ============================================================================
+
+export const CATEGORIES = [
+  { name: '文', slug: 'wen' },
+  { name: 'Portrait', slug: 'portrait' },
+  { name: 'Sketch', slug: 'sketch' },
+  { name: 'Jazz', slug: 'jazz' },
+] as const;
+
+export type CategoryName = (typeof CATEGORIES)[number]['name'];
+
+export function categoryFromTitle(title: string): CategoryName {
+  if (/jazz/i.test(title)) return 'Jazz';
+  if (/portrait/i.test(title)) return 'Portrait';
+  if (/sketch/i.test(title)) return 'Sketch';
+  return '文';
+}
+
+export function categoryOf(post: Post): CategoryName {
+  return categoryFromTitle(post.data.title);
+}
+
+export function categoryBySlug(slug: string) {
+  return CATEGORIES.find((c) => c.slug === slug);
+}

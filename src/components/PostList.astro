@@ -1,0 +1,24 @@
+---
+// 文章列表：首页与分类页共用（引文 + trailer 双行，meta 行含分类）
+import type { Post } from '../lib/posts';
+import { categoryOf, dateISO, excerptOf, postSlug, readingMinutes } from '../lib/posts';
+
+interface Props {
+  posts: Post[];
+}
+const { posts } = Astro.props;
+---
+<ul class="post-list">
+  {posts.map((p) => (
+    <li class="post-item reveal">
+      <a href={`/posts/${postSlug(p)}/`}>
+        <div class="post-meta">
+          {dateISO(p.data.date)} · <span class="cat">{categoryOf(p)}</span> · 约 {readingMinutes(p.body ?? '')} 分钟
+        </div>
+        <h2>{p.data.title}</h2>
+        {p.data.quote && <p class="post-quote">「{p.data.quote}」</p>}
+        <p class="post-excerpt">{excerptOf(p)}</p>
+      </a>
+    </li>
+  ))}
+</ul>

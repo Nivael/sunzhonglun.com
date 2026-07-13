@@ -1,0 +1,24 @@
+---
+// 分类总览：窄屏顶栏「分类」的落点（桌面上侧栏可直达各分类）
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import site from '../../site.json';
+import { CATEGORIES, categoryOf } from '../lib/posts';
+
+const posts = await getCollection('posts');
+const counts = new Map<string, number>();
+for (const p of posts) {
+  const c = categoryOf(p);
+  counts.set(c, (counts.get(c) ?? 0) + 1);
+}
+---
+<Base title={`分类 — ${site.title}`} description={site.description}>
+  <article class="post">
+    <header class="post-header reveal"><h1>分类</h1></header>
+    <nav class="cat-index reveal">
+      {CATEGORIES.map((c) => (
+        <a href={`/category/${c.slug}/`}>{c.name}<b>{counts.get(c.name) ?? 0}</b></a>
+      ))}
+    </nav>
+  </article>
+</Base>
