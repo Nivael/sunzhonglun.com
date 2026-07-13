@@ -2,8 +2,11 @@
 
 ## 项目背景
 
-Zhonglun 的个人博客，用于收录过往微信公众号文章 + 之后的新写作，后续还会加视频页。
-站点基于 **Astro 5** 静态生成（`output: 'static'`），部署目标 Vercel 或 Cloudflare Pages，域名 sunzhonglun.com。
+Zhonglun 的个人 portfolio 网站 + 写作存档，收录 92 篇过往微信公众号文章 + 之后的新写作，后续加视频页。
+站点基于 **Astro 5** 静态生成（`output: 'static'`），部署目标 Vercel，域名 sunzhonglun.com。
+
+**需求与路线图见 [docs/PRD.md](docs/PRD.md)**——它是唯一需求源，功能不在 PRD 里先改 PRD 再动手；
+协作规则、版本规则也在 PRD §8/§9。
 
 ## 结构
 
@@ -58,9 +61,8 @@ npm run preview   预览构建产物
 
 ## 待办
 
-1. 公众号文章迁移：只有文章 URL（mp.weixin.qq.com），需抓取正文 + 下载图片到本地（微信图片有 referer 防盗链，下载时带 `Referer: https://mp.weixin.qq.com/`），转为 markdown 入 `content/posts/`
-2. 部署上线（Vercel 或 Cloudflare Pages，绑定 sunzhonglun.com）
-3. 视频页：暂缓，之后规划（大概率嵌入 B 站/YouTube）
+见 [docs/PRD.md](docs/PRD.md) §3 版本路线图。下一步：**v1.0 上线**（GitHub 仓库 + 域名 + Vercel + 基础 SEO），
+其中域名购买、GitHub 账号等需用户操作的项列在 PRD §11 开放问题。
 
 ## 迭代记录
 
@@ -71,6 +73,9 @@ npm run preview   预览构建产物
   RSS 手写端点复刻旧格式；关闭 Shiki 与 smartypants 保持排版口径。已删除 `templates/`、`scripts/`、
   `dist/`（旧产物）、`assets/`（被 `public/assets/` 取代），git 历史可找回。
   与旧站产物 diff 验证：仅链接改为绝对路径、标题新增 id 锚点、SVG 序列化差异三类预期变化。
+- **2026-07-13 撰写 PRD**（`docs/PRD.md`）：确立产品定位（portfolio + 写作存档）、版本路线图
+  （v1.0 上线 → v1.1 迁移 92 篇公众号文章 → v1.2 设计升级 portfolio 化 → v1.3 视频页）、
+  协作与版本规则、非目标清单。公众号迁移采用直接抓取为主 + computer use 兜底的混合方案。
 
 ## 约定
 
