@@ -12,6 +12,7 @@
 """
 import json
 import re
+import subprocess
 import sys
 import time
 import urllib.request
@@ -195,22 +196,43 @@ def img_ext(url: str) -> str:
     return {"jpeg": "jpg", "other": "jpg"}.get(fmt, fmt)
 
 
+def optimize(dest: Path) -> Path:
+    """微信原图动辄 1-2MB PNG，直接上站会拖垮加载。
+    >300KB 的静态图：限宽 1400px（44rem 版心的 2x retina 足够）并转 JPEG 质量 82。
+    GIF 跳过（sips 会丢动画）。透明 PNG 会失去透明度——文章配图均为照片，可接受。"""
+    if dest.suffix == ".gif" or dest.stat().st_size < 300_000:
+        return dest
+    out = dest.with_suffix(".jpg")
+    subprocess.run(
+        ["sips", "-Z", "1400", "-s", "format", "jpeg", "-s", "formatOptions", "82",
+         str(dest), "--out", str(out)],
+        check=True, capture_output=True,
+    )
+    if out != dest:
+        dest.unlink()
+    return out
+
+
 def download_images(urls: list, slug: str) -> list:
     img_dir = ROOT / "public" / "assets" / "images" / slug
     paths = []
     for n, url in enumerate(urls):
-        name = f"{n + 1:02d}.{img_ext(url)}"
-        dest = img_dir / name
-        if not dest.exists():
+        existing = sorted(img_dir.glob(f"{n + 1:02d}.*")) if img_dir.exists() else []
+        if existing:
+            dest = existing[0]
+        else:
             img_dir.mkdir(parents=True, exist_ok=True)
+            dest = img_dir / f"{n + 1:02d}.{img_ext(url)}"
             req = urllib.request.Request(url, headers={
                 "User-Agent": UA,
                 "Referer": "https://mp.weixin.qq.com/",  # 微信图片防盗链
             })
-            dest.write_bytes(urllib.request.urlopen(req, timeout=30).read())
-            print(f"  图片 {name} ({dest.stat().st_size // 1024} KB)")
+            raw = urllib.request.urlopen(req, timeout=30).read()
+            dest.write_bytes(raw)
+            dest = optimize(dest)
+            print(f"  图片 {dest.name} ({dest.stat().st_size // 1024} KB，原始 {len(raw) // 1024} KB)")
             time.sleep(0.5)
-        paths.append(f"/assets/images/{slug}/{name}")
+        paths.append(f"/assets/images/{slug}/{dest.name}")
     return paths
 
 
