@@ -16,6 +16,7 @@ const posts = sortPostsDesc(await getCollection('posts'));
           <a href={`/posts/${postSlug(p)}/`}>
             <div class="post-meta">{dateISO(p.data.date)} · 约 {readingMinutes(p.body ?? '')} 分钟</div>
             <h2>{p.data.title}</h2>
+            {p.data.quote && <p class="post-quote">「{p.data.quote}」</p>}
             <p class="post-excerpt">{excerptOf(p)}</p>
           </a>
         </li>
