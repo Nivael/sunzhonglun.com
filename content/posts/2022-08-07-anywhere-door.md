@@ -1,6 +1,8 @@
 ---
 title: "任意门"
 date: 2022-08-07
+quote: "对不起先生，看错包了。"
+excerpt: "安检口，一个坚称没带体温计的旅客，和一场彻底的开包检查。"
 ---
 
 ![](/assets/images/anywhere-door/01.jpg)

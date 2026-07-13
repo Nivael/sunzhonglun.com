@@ -1,6 +1,8 @@
 ---
 title: "Downstairs"
 date: 2022-11-12
+quote: "一天是沙地。一天是沙丘。一天是沙漠。"
+excerpt: "封控两个月后，一个小孩戴好帽子站在门口，等妈妈打扮完带他下楼挖沙子。"
 ---
 
 ![](/assets/images/downstairs/01.jpg)

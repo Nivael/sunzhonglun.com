@@ -1,6 +1,8 @@
 ---
 title: "作家受到袭击"
 date: 2022-08-27
+quote: "而作家眨了眨剩下的一只眼，咕哝道，我赢了。"
+excerpt: "一场推迟了三十年的会面：从追杀令讲到刀落下的那一刻，作家与年轻人的两种一生。"
 ---
 
 ![](/assets/images/the-writer-is-attacked/01.jpg)

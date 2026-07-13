@@ -1,6 +1,8 @@
 ---
 title: "唐山打人事件在场男性假采访"
 date: 2022-06-13
+quote: "男本柔弱，为夫则刚。"
+excerpt: "三段杜撰的采访：那晚烧烤店里没有动手也没有伸手的男人们，各自给出了体面的解释。"
 ---
 
 ![](/assets/images/tangshan-bystanders-fake-interview/01.jpg)

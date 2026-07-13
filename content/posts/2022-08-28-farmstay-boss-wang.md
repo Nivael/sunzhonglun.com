@@ -1,6 +1,8 @@
 ---
 title: "农家乐王老板"
 date: 2022-08-28
+quote: "这张桌子，吃出过十八个进士啊。"
+excerpt: "农家乐王老板的敬酒词：蛇酒、进士桌，和他一九八八年戒酒的故事。"
 ---
 
 ![](/assets/images/farmstay-boss-wang/01.jpg)
