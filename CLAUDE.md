@@ -72,8 +72,8 @@ npm test          单元测试（vitest，覆盖 src/lib/posts.ts）
 
 ## 待办
 
-见 [docs/PRD.md](docs/PRD.md) §3 版本路线图。当前：**v1.4 访问统计**开发完成待验收
-（用户需开通 Upstash 并审阅 PR，见 PRD §7.5）；随后 **v1.3 视频页**。
+见 [docs/PRD.md](docs/PRD.md) §3 版本路线图。当前：**v1.4 访问统计**开发完成，
+Upstash 已开通并关联项目，PR #5 待用户审阅合并（见 PRD §7.5）；随后 **v1.3 视频页**。
 
 ## 迭代记录
 
@@ -82,7 +82,8 @@ npm test          单元测试（vitest，覆盖 src/lib/posts.ts）
   REST pipeline）+ main.js 每页上报（localStorage 当日去重，上报成功才写标记）。仅生产环境计数
   （preview/bot 只读），无 Redis 环境变量时静默降级、统计区隐藏。日期口径东八区
   （`src/lib/visits.ts`，vitest 覆盖边界）。分支 feature/visit-counter（基于 fix/asset-cache-busting）。
-  待用户：Vercel 开通 Upstash 并关联项目、审阅 PR。
+  2026-07-19 已推送并开 PR #5；Upstash Redis 已在 Vercel 开通（upstash-kv-rose-river，iad1，Free 档）
+  并 Connect 到项目（Production + Preview，注入 `KV_REST_API_*` 变量）。待用户：审阅合并 PR #5。
 
 - **2026-07-13 v1.2 portfolio 化**：左侧栏（首页/分类页，≥1080px）+ 四分类
   （Jazz/Portrait/Sketch/文，标题推导，vitest 覆盖）+ 新 hero
