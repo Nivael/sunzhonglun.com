@@ -24,6 +24,32 @@
     els.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  // 访问统计：每页上报一次；侧栏存在占位元素时填充显示（PRD §7.5）
+  (function () {
+    var day = new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10); // 东八区
+    var isNew = false;
+    try { isNew = localStorage.getItem('uv-day') !== day; } catch (e) {}
+    fetch('/api/visit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ newVisitor: isNew }),
+      keepalive: true,
+    }).then(function (r) {
+      return r.ok ? r.json() : null;
+    }).then(function (d) {
+      if (!d || !d.ok) return;
+      // 上报成功才写去重标记，失败则下次仍按新访客上报
+      if (isNew) { try { localStorage.setItem('uv-day', day); } catch (e) {} }
+      var stats = document.querySelector('.side-stats');
+      if (!stats) return;
+      stats.querySelectorAll('[data-stat]').forEach(function (el) {
+        var v = d[el.getAttribute('data-stat')];
+        el.textContent = typeof v === 'number' ? v.toLocaleString('zh-Hans-CN') : '–';
+      });
+      stats.hidden = false;
+    }).catch(function () {});
+  })();
+
   // 文章页阅读进度条
   var bar = document.querySelector('.progress__bar');
   var content = document.querySelector('.post-content');

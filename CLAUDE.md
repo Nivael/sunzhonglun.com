@@ -23,6 +23,7 @@ src/components/       Header / Footer / ThemeToggle / Sidebar / PostList
 src/pages/            index / posts/[slug] / category/[slug] / categories / about / feed.xml.ts
 src/lib/posts.ts      阅读时长、摘要、slug、日期格式、分类推导（categoryFromTitle）
 tests/                vitest 单元测试（npm test）
+api/visit.ts          访问统计 serverless 函数（Vercel 根 api/，不经 Astro 构建，见 PRD §7.5）
 site.json             站点标题、简介、域名
 astro.config.mjs      关闭 Shiki 高亮与 smartypants（保持排版口径，勿开）
 ```
@@ -71,10 +72,17 @@ npm test          单元测试（vitest，覆盖 src/lib/posts.ts）
 
 ## 待办
 
-见 [docs/PRD.md](docs/PRD.md) §3 版本路线图。下一步：**v1.0 上线**（GitHub 仓库 + 域名 + Vercel + 基础 SEO），
-其中域名购买、GitHub 账号等需用户操作的项列在 PRD §11 开放问题。
+见 [docs/PRD.md](docs/PRD.md) §3 版本路线图。当前：**v1.4 访问统计**开发完成待验收
+（用户需开通 Upstash 并审阅 PR，见 PRD §7.5）；随后 **v1.3 视频页**。
 
 ## 迭代记录
+
+- **2026-07-19 v1.4 访问统计（开发完成，待部署验收）**：侧栏展示 总来访/今日（UV，人）与
+  总浏览/今日（PV，次）。`api/visit.ts`（Vercel 根 api/ serverless，零依赖直调 Upstash Redis
+  REST pipeline）+ main.js 每页上报（localStorage 当日去重，上报成功才写标记）。仅生产环境计数
+  （preview/bot 只读），无 Redis 环境变量时静默降级、统计区隐藏。日期口径东八区
+  （`src/lib/visits.ts`，vitest 覆盖边界）。分支 feature/visit-counter（基于 fix/asset-cache-busting）。
+  待用户：Vercel 开通 Upstash 并关联项目、审阅 PR。
 
 - **2026-07-13 v1.2 portfolio 化**：左侧栏（首页/分类页，≥1080px）+ 四分类
   （Jazz/Portrait/Sketch/文，标题推导，vitest 覆盖）+ 新 hero
