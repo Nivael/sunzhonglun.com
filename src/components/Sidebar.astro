@@ -32,6 +32,11 @@ const path = Astro.url.pathname;
       </a>
     ))}
   </nav>
+  <div class="side-stats" hidden>
+    <div class="side-label">来访</div>
+    <div>来访 <b data-stat="uvTotal"></b> 人 · 今日 <b data-stat="uvToday"></b></div>
+    <div>浏览 <b data-stat="pvTotal"></b> 次 · 今日 <b data-stat="pvToday"></b></div>
+  </div>
   <div class="side-foot">
     <a href="mailto:zhonglunsun@gmail.com">zhonglunsun@gmail.com</a>
     <a href="/feed.xml">RSS</a>
