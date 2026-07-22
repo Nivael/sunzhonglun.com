@@ -2,4 +2,7 @@
 import site from '../../site.json';
 const year = new Date().getFullYear();
 ---
-<footer class="site-footer">© {year} {site.title} · <a href="/feed.xml">RSS</a></footer>
+<footer class="site-footer">
+  <span>© {year} {site.title} · <a href="/feed.xml">RSS</a></span>
+  <span class="foot-stats" hidden>来访 <b data-stat="uvTotal"></b> 人 · 浏览 <b data-stat="pvTotal"></b> 次</span>
+</footer>

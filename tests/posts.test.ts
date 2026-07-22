@@ -4,6 +4,7 @@ import {
   categoryFromTitle,
   dateDisplay,
   dateISO,
+  firstImage,
   firstParagraph,
   pubDate,
   readingMinutes,
@@ -68,4 +69,19 @@ describe('日期格式：UTC 取值，避免东八区偏移', () => {
   it('dateDisplay', () => expect(dateDisplay(d)).toBe('2026 · 06 · 11'));
   it('pubDate 与旧 feed.xml 格式一致', () =>
     expect(pubDate(d)).toBe('Thu, 11 Jun 2026 00:00:00 +0800'));
+});
+
+describe('firstImage：正文首图作杂志网格封面', () => {
+  it('取第一张站内图片', () => {
+    expect(firstImage('开头\n\n![](/assets/images/a/1.jpg)\n\n![](/assets/images/a/2.jpg)')).toBe('/assets/images/a/1.jpg');
+  });
+  it('带 alt 文本也能取到', () => {
+    expect(firstImage('![某图](/assets/images/b/x.png) 后文')).toBe('/assets/images/b/x.png');
+  });
+  it('忽略站外图片', () => {
+    expect(firstImage('![](https://example.com/x.jpg)')).toBeNull();
+  });
+  it('无图返回 null', () => {
+    expect(firstImage('纯文字段落而已')).toBeNull();
+  });
 });

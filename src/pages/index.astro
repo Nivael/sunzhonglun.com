@@ -1,5 +1,5 @@
 ---
-// 首页：portfolio 形态（侧栏 + hero 一句话 + 最新列表）
+// 首页（v1.4 杂志化）：报刊式 masthead + 最新一篇通栏 feature + 杂志网格
 import { getCollection } from 'astro:content';
 import PostList from '../components/PostList.astro';
 import Base from '../layouts/Base.astro';
@@ -7,12 +7,18 @@ import site from '../../site.json';
 import { sortPostsDesc } from '../lib/posts';
 
 const posts = sortPostsDesc(await getCollection('posts'));
+const firstYear = posts[posts.length - 1]?.data.date.getUTCFullYear();
 ---
 <Base title={site.title} description={site.description} sidebar>
-  <section class="hero reveal">
+  <section class="hero masthead reveal">
+    <p class="masthead-meta">
+      <span>写作存档 · {firstYear} 年创刊</span>
+      <span>共 {posts.length} 篇</span>
+    </p>
     <h1>Hi there, I'm Zhonglun, and <em>I write.</em></h1>
+    <div class="rule-double" aria-hidden="true"></div>
   </section>
-  <main class="home-main">
-    <PostList posts={posts} />
+  <main class="home-main magazine">
+    <PostList posts={posts} featured />
   </main>
 </Base>

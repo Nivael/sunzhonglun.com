@@ -1,5 +1,5 @@
 ---
-// 分类归档页：与首页列表同构，hero 为分类名 + 篇数
+// 分类归档页（v1.4 杂志化）：masthead 为分类名大字 + 篇数，列表为杂志网格（无 feature）
 import { getCollection } from 'astro:content';
 import PostList from '../../components/PostList.astro';
 import Base from '../../layouts/Base.astro';
@@ -15,11 +15,15 @@ const cat = categoryBySlug(slug)!;
 const posts = sortPostsDesc(await getCollection('posts')).filter((p) => categoryOf(p) === cat.name);
 ---
 <Base title={`${cat.name} — ${site.title}`} description={`分类「${cat.name}」下的 ${posts.length} 篇文章`} sidebar>
-  <section class="hero reveal">
+  <section class="hero masthead reveal">
+    <p class="masthead-meta">
+      <span>分类</span>
+      <span>{posts.length} 篇</span>
+    </p>
     <h1>{cat.name}</h1>
-    <p>{posts.length} 篇</p>
+    <div class="rule-double" aria-hidden="true"></div>
   </section>
-  <main class="home-main">
+  <main class="home-main magazine">
     <PostList posts={posts} />
   </main>
 </Base>

@@ -62,26 +62,100 @@ a { color: inherit; text-decoration: none; }
 [data-theme="dark"] .icon-sun { display: block; }
 [data-theme="dark"] .icon-moon { display: none; }
 
-/* ============ 首页 ============ */
-.hero { max-width: 44rem; margin: 0 auto; padding: 3.2rem 1.5rem .6rem; }
+/* ============ 首页与分类页：报刊 masthead + 杂志网格（v1.4） ============ */
+.hero { max-width: 68rem; margin: 0 auto; padding: 2.6rem 1.5rem 0; }
 .hero h1 { font-family: var(--serif); font-size: 2.1rem; line-height: 1.3; margin: 0 0 .9rem; }
 .hero p { color: var(--text-soft); line-height: 1.9; margin: 0; max-width: 36rem; font-size: 1.02rem; }
-.home-main { max-width: 44rem; margin: 0 auto; padding: 1.2rem 1.5rem 4rem; }
-.post-list { list-style: none; margin: 0; padding: 0; }
-.post-item { border-bottom: 1px solid var(--line); }
-.post-item a { display: block; padding: 2.1rem 0; }
-.post-item .post-meta { margin-bottom: .55rem; }
-.post-item h2 {
+.home-main { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem 4.5rem; }
+
+/* 刊头：细线夹注的元信息行（Miranda 报刊感） */
+.masthead p.masthead-meta {
+  display: flex; justify-content: space-between; gap: 1rem;
+  max-width: none; margin: 0; padding: .6rem .1rem .55rem;
+  border-top: 2px solid var(--text); border-bottom: 1px solid var(--line);
+  font-size: .76rem; letter-spacing: .17em; color: var(--text-soft);
+  font-variant-numeric: tabular-nums; text-transform: uppercase;
+}
+.masthead h1 {
+  font-size: clamp(2.2rem, 4.6vw, 3.3rem); line-height: 1.22;
+  margin: 2rem 0 1.9rem; letter-spacing: .005em;
+}
+.hero h1 em, .masthead h1 em { font-style: italic; color: var(--accent); }
+.rule-double { height: 6px; border-top: 1px solid var(--text); border-bottom: 2px solid var(--text); }
+
+/* 通栏 feature：最新一篇作题图（Miranda 头版大图 + 视差） */
+.feature-card { display: block; padding: 2.2rem 0 2.5rem; border-bottom: 1px solid var(--line); }
+.feature-media { margin: 0 0 1.7rem; overflow: hidden; border-radius: 6px; background: var(--bg-soft); aspect-ratio: 21 / 9; }
+.feature-media img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  /* scale 留出视差余量，位移由 main.js 按滚动计算；reduced-motion 下还原 */
+  transform: scale(1.12); will-change: transform;
+}
+.feature-body { display: grid; grid-template-columns: 7fr 5fr; gap: .3rem 3rem; align-items: start; }
+.feature-body .card-overline { grid-column: 1 / -1; }
+.feature-body .card-title { font-size: clamp(1.7rem, 3vw, 2.5rem); line-height: 1.35; }
+.feature-body .post-quote { font-size: 1.06rem; margin-top: .3rem; }
+
+/* 网格卡片 */
+.post-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 2.6rem; }
+.grid-item { border-bottom: 1px solid var(--line); min-width: 0; }
+.grid-card { display: block; padding: 1.9rem 0 2.1rem; }
+
+/* 封面图：正文首图，aspect-ratio 占位防抖动，hover 轻微放大 */
+.card-media { margin: 0; overflow: hidden; border-radius: 6px; background: var(--bg-soft); }
+.card-media img {
+  display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 10;
+  transition: transform .6s cubic-bezier(.2, .6, .2, 1);
+}
+a:hover .card-media img { transform: scale(1.03); }
+.grid-card .card-media { margin-bottom: 1.15rem; }
+
+/* 封面滚动显影：进入视口时从遮罩中展开（随 .reveal 的 is-visible 触发） */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal .card-media, .reveal .card-plate {
+    clip-path: inset(10% 5% 10% 5% round 6px);
+    transition: clip-path .9s cubic-bezier(.2, .6, .2, 1);
+  }
+  .reveal.is-visible .card-media, .reveal.is-visible .card-plate { clip-path: inset(0 round 6px); }
+}
+
+/* 字卡：无图文章以 quote 排版块代位（Gritty 质感块） */
+.card-plate {
+  background: var(--bg-soft); border-radius: 6px; aspect-ratio: 16 / 10;
+  display: flex; align-items: center; padding: 1.5rem 1.7rem; margin-bottom: 1.15rem;
+  border-left: 3px solid var(--accent);
+}
+.card-plate p {
+  font-family: var(--serif); font-size: 1.13rem; line-height: 2; color: var(--text-soft); margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* 卡片文字层 */
+.card-overline { font-size: .78rem; letter-spacing: .1em; color: var(--text-faint); margin: 0 0 .55rem; font-variant-numeric: tabular-nums; }
+.card-title {
   font-family: var(--serif);
-  font-size: 1.42rem; line-height: 1.45; margin: 0;
+  font-size: 1.32rem; line-height: 1.5; margin: 0;
   display: inline;
   background-image: linear-gradient(var(--accent), var(--accent));
   background-size: 0% 2px; background-repeat: no-repeat; background-position: 0 100%;
   transition: background-size .35s cubic-bezier(.2, .6, .2, 1);
 }
-.post-item a:hover h2 { background-size: 100% 2px; }
-.post-quote { font-family: var(--serif); color: var(--text); line-height: 1.9; margin: .65rem 0 0; font-size: 1.02rem; }
+a:hover .card-title { background-size: 100% 2px; }
+.post-quote { font-family: var(--serif); color: var(--text); line-height: 1.9; margin: .6rem 0 0; font-size: 1rem; }
 .post-excerpt { color: var(--text-faint); line-height: 1.85; margin: .45rem 0 0; font-size: .92rem; }
+.grid-card .post-quote,
+.grid-card .post-excerpt { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* 宽屏三栏 */
+@media (min-width: 1360px) {
+  .post-grid { grid-template-columns: repeat(3, 1fr); }
+}
+/* 窄屏：单栏、feature 纵排 */
+@media (max-width: 820px) {
+  .feature-media { aspect-ratio: 4 / 3; }
+  .feature-body { grid-template-columns: 1fr; gap: 0; }
+  .post-grid { grid-template-columns: 1fr; }
+}
 
 /* ============ 通用元信息 ============ */
 .post-meta { font-size: .84rem; color: var(--text-faint); letter-spacing: .04em; }
@@ -123,7 +197,11 @@ a { color: inherit; text-decoration: none; }
   padding: 2.2rem 1.5rem 3rem;
   border-top: 1px solid var(--line);
   color: var(--text-faint); font-size: .84rem;
+  display: flex; justify-content: space-between; gap: .6rem 1.5rem; flex-wrap: wrap;
 }
+.foot-stats { font-variant-numeric: tabular-nums; }
+.foot-stats[hidden] { display: none; }
+.foot-stats b { font-weight: 400; }
 .site-footer a:hover { color: var(--text); }
 
 /* ============ 阅读进度条 ============ */
@@ -186,12 +264,14 @@ a.cat:hover { background: var(--accent-soft); }
   html { scroll-behavior: auto; }
   body { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .feature-media img { transform: none; will-change: auto; }
 }
 
 /* ============ 移动端 ============ */
 @media (max-width: 540px) {
   .hero h1 { font-size: 1.7rem; }
+  .masthead h1 { font-size: 1.9rem; }
   .post-header h1 { font-size: 1.65rem; }
   .post-content { font-size: 1.06rem; }
-  .post-item h2 { font-size: 1.25rem; }
+  .card-title { font-size: 1.25rem; }
 }
