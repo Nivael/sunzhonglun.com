@@ -34,6 +34,12 @@ export function excerptOf(post: Post): string {
   return post.data.excerpt || firstParagraph(post.body ?? '');
 }
 
+// 正文首图（站内路径），作杂志网格的封面；无图返回 null——不加 frontmatter 字段，正文即封面来源
+export function firstImage(body: string): string | null {
+  const m = body.match(/!\[[^\]]*\]\((\/assets\/[^)\s]+)/);
+  return m ? m[1] : null;
+}
+
 // frontmatter 的日期按 UTC 解析，取值也用 UTC，避免时区偏移一天
 function ymd(date: Date): [string, string, string] {
   return [

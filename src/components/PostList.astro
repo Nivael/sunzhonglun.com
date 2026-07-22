@@ -1,24 +1,63 @@
 ---
-// 文章列表：首页与分类页共用（引文 + trailer 双行，meta 行含分类）
+// 文章列表（v1.4 杂志网格）：首页与分类页共用。
+// featured=true（首页）时最新一篇为通栏 feature，其余进两栏网格（≥1360px 三栏，窄屏单栏）。
+// 封面 = 正文首图（firstImage 推导）；无图文章以 quote 排版块代位，图卡与字卡混排。
 import type { Post } from '../lib/posts';
-import { categoryOf, dateISO, excerptOf, postSlug, readingMinutes } from '../lib/posts';
+import { categoryOf, dateISO, excerptOf, firstImage, postSlug, readingMinutes } from '../lib/posts';
 
 interface Props {
   posts: Post[];
+  featured?: boolean;
 }
-const { posts } = Astro.props;
+const { posts, featured = false } = Astro.props;
+const head = featured ? posts[0] : undefined;
+const rest = featured ? posts.slice(1) : posts;
+const headImg = head ? firstImage(head.body ?? '') : null;
 ---
-<ul class="post-list">
-  {posts.map((p) => (
-    <li class="post-item reveal">
-      <a href={`/posts/${postSlug(p)}/`}>
-        <div class="post-meta">
-          {dateISO(p.data.date)} · <span class="cat">{categoryOf(p)}</span> · 约 {readingMinutes(p.body ?? '')} 分钟
-        </div>
-        <h2>{p.data.title}</h2>
-        {p.data.quote && <p class="post-quote">「{p.data.quote}」</p>}
-        <p class="post-excerpt">{excerptOf(p)}</p>
-      </a>
-    </li>
-  ))}
+{head && (
+  <a class="feature-card reveal" href={`/posts/${postSlug(head)}/`}>
+    {headImg && (
+      <figure class="feature-media" data-parallax>
+        <img src={headImg} alt="" decoding="async" />
+      </figure>
+    )}
+    <div class="feature-body">
+      <div class="card-overline">
+        <span class="cat">{categoryOf(head)}</span> · {dateISO(head.data.date)} · 约 {readingMinutes(head.body ?? '')} 分钟 · 最新
+      </div>
+      <h2 class="card-title">{head.data.title}</h2>
+      <div class="feature-aside">
+        {head.data.quote && <p class="post-quote">「{head.data.quote}」</p>}
+        <p class="post-excerpt">{excerptOf(head)}</p>
+      </div>
+    </div>
+  </a>
+)}
+<ul class="post-grid">
+  {rest.map((p) => {
+    const img = firstImage(p.body ?? '');
+    return (
+      <li class="grid-item reveal">
+        <a class="grid-card" href={`/posts/${postSlug(p)}/`}>
+          {img ? (
+            <figure class="card-media">
+              <img src={img} alt="" loading="lazy" decoding="async" />
+            </figure>
+          ) : (
+            p.data.quote && (
+              <div class="card-plate">
+                <p>「{p.data.quote}」</p>
+              </div>
+            )
+          )}
+          <div class="card-overline">
+            <span class="cat">{categoryOf(p)}</span> · {dateISO(p.data.date)} · 约 {readingMinutes(p.body ?? '')} 分钟
+          </div>
+          <h2 class="card-title">{p.data.title}</h2>
+          {img && p.data.quote && <p class="post-quote">「{p.data.quote}」</p>}
+          <p class="post-excerpt">{excerptOf(p)}</p>
+        </a>
+      </li>
+    );
+  })}
 </ul>
