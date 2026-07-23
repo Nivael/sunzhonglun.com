@@ -3,6 +3,7 @@ title: "东莞日记，九月十八"
 date: 2015-09-19
 quote: "但有故事，就意味着没那么糟。"
 excerpt: "工厂第二天：细光说都一样，胡哥说活着就是为了活着——可他的 QQ 空间说了别的。"
+cover: "/assets/images/dongguan-diary-0918/cover.jpg"
 ---
 
 今天许领班安排我去加工部。

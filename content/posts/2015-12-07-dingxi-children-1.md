@@ -3,6 +3,7 @@ title: "定西孩子，之一"
 date: 2015-12-07
 quote: "定西的冬天总是很长，长得她都忘了春暖花开的滋味。"
 excerpt: "甘肃定西支教手记之一：王老师的二十年讲台，和单亲妈妈刘姐的一碗馍馍。"
+cover: "/assets/images/dingxi-children-1/cover.jpg"
 ---
 
 十一月我来到甘肃定西做英语老师。

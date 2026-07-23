@@ -2,10 +2,15 @@
 import type { CollectionEntry } from 'astro:content';
 
 export type Post = CollectionEntry<'posts'>;
+export type EnglishPost = CollectionEntry<'postsEn'>;
+export interface EnglishPostPair {
+  source: Post;
+  translation: EnglishPost;
+}
 
 // glob loader 的 id：frontmatter 有 slug 时用 slug，否则是文件名（去扩展名）。
 // 这里再去掉日期前缀，得到与旧站相同的 URL slug。
-export function postSlug(post: Post): string {
+export function postSlug(post: { id: string }): string {
   return post.id.replace(/^\d{4}-\d{2}-\d{2}-/, '');
 }
 
@@ -34,10 +39,15 @@ export function excerptOf(post: Post): string {
   return post.data.excerpt || firstParagraph(post.body ?? '');
 }
 
-// 正文首图（站内路径），作杂志网格的封面；无图返回 null——不加 frontmatter 字段，正文即封面来源
+// 正文首张站内图片；没有则返回 null
 export function firstImage(body: string): string | null {
   const m = body.match(/!\[[^\]]*\]\((\/assets\/[^)\s]+)/);
   return m ? m[1] : null;
+}
+
+// 列表封面：恢复的公众号题图优先，否则取正文首图；两者都没有时返回 null
+export function coverImage(post: { data: { cover?: string }; body?: string }): string | null {
+  return post.data.cover || firstImage(post.body ?? '');
 }
 
 // frontmatter 的日期按 UTC 解析，取值也用 UTC，避免时区偏移一天
@@ -71,6 +81,21 @@ export function sortPostsDesc(posts: Post[]): Post[] {
   return [...posts].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
+// 英文译稿按 id 与中文源稿配对；日期、slug、分类和封面都取自中文源稿。
+// 孤立译稿直接中止构建，避免发布没有来源或链接错位的英文文章。
+export function pairEnglishPosts(posts: Post[], translations: EnglishPost[]): EnglishPostPair[] {
+  const sources = new Map(posts.map((post) => [post.id, post]));
+  return translations.map((translation) => {
+    const source = sources.get(translation.id);
+    if (!source) throw new Error(`英文译稿缺少中文源稿：${translation.id}`);
+    return { source, translation };
+  });
+}
+
+export function sortEnglishPairsDesc(pairs: EnglishPostPair[]): EnglishPostPair[] {
+  return [...pairs].sort((a, b) => b.source.data.date.getTime() - a.source.data.date.getTime());
+}
+
 // ============================================================================
 // 分类：由标题推导（PRD §6.2.5），不加 frontmatter 字段——标题即分类
 // Jazz / Portrait / Sketch 由标题关键词识别（含 June Portrait 等变体），其余归「文」
@@ -94,6 +119,10 @@ export function categoryFromTitle(title: string): CategoryName {
 
 export function categoryOf(post: Post): CategoryName {
   return categoryFromTitle(post.data.title);
+}
+
+export function categoryNameEn(category: CategoryName): string {
+  return category === '文' ? 'Essay' : category;
 }
 
 export function categoryBySlug(slug: string) {

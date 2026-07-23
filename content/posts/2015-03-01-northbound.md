@@ -3,6 +3,7 @@ title: "一路向北"
 date: 2015-03-01
 quote: "说到底，痴人说梦，总好过梦里痴言。"
 excerpt: "他决定休学一年回国当理发师——与三位教授和父亲关于人生秩序的一场场谈判。"
+cover: "/assets/images/northbound/cover.jpg"
 ---
 
 1.

@@ -5,6 +5,12 @@ import site from '../../site.json';
 import { CATEGORIES, categoryOf } from '../lib/posts';
 import ThemeToggle from './ThemeToggle.astro';
 
+interface Props {
+  lang?: 'zh-CN' | 'en';
+  alternatePath?: string;
+}
+const { lang = 'zh-CN', alternatePath } = Astro.props;
+const english = lang === 'en';
 const posts = await getCollection('posts');
 const counts = new Map<string, number>();
 for (const p of posts) {
@@ -20,26 +26,35 @@ const path = Astro.url.pathname;
     <div class="bio">I write.</div>
   </div>
   <nav class="side-nav">
-    <div class="side-label">导航</div>
-    <a class={path === '/' ? 'current' : undefined} href="/">文章</a>
-    <a href="/about/">关于</a>
-  </nav>
-  <nav class="side-cats">
-    <div class="side-label">分类</div>
-    {CATEGORIES.map((c) => (
-      <a class={path.startsWith(`/category/${c.slug}`) ? 'current' : undefined} href={`/category/${c.slug}/`}>
-        {c.name}<b>{counts.get(c.name) ?? 0}</b>
+    <div class="side-label">{english ? 'NAVIGATION' : '导航'}</div>
+    <a class={path === (english ? '/en/' : '/') ? 'current' : undefined} href={english ? '/en/' : '/'}>
+      {english ? 'Writing' : '文章'}
+    </a>
+    <a href={english ? '/en/about/' : '/about/'}>{english ? 'About' : '关于'}</a>
+    {alternatePath && (
+      <a class="language-link" href={alternatePath} lang={english ? 'zh-CN' : 'en'}>
+        {english ? '中文' : 'English'}
       </a>
-    ))}
+    )}
   </nav>
+  {!english && (
+    <nav class="side-cats">
+      <div class="side-label">分类</div>
+      {CATEGORIES.map((c) => (
+        <a class={path.startsWith(`/category/${c.slug}`) ? 'current' : undefined} href={`/category/${c.slug}/`}>
+          {c.name}<b>{counts.get(c.name) ?? 0}</b>
+        </a>
+      ))}
+    </nav>
+  )}
   <div class="side-stats" hidden>
-    <div class="side-label">来访</div>
-    <div>来访 <b data-stat="uvTotal"></b> 人 · 今日 <b data-stat="uvToday"></b></div>
-    <div>浏览 <b data-stat="pvTotal"></b> 次 · 今日 <b data-stat="pvToday"></b></div>
+    <div class="side-label">{english ? 'VISITS' : '来访'}</div>
+    <div>{english ? 'Visitors ' : '来访 '}<b data-stat="uvTotal"></b>{english ? ' · Today ' : ' 人 · 今日 '}<b data-stat="uvToday"></b></div>
+    <div>{english ? 'Views ' : '浏览 '}<b data-stat="pvTotal"></b>{english ? ' · Today ' : ' 次 · 今日 '}<b data-stat="pvToday"></b></div>
   </div>
   <div class="side-foot">
     <a href="mailto:zhonglunsun@gmail.com">zhonglunsun@gmail.com</a>
-    <a href="/feed.xml">RSS</a>
-    <ThemeToggle />
+    <a href="/feed.xml">{english ? 'RSS (Chinese)' : 'RSS'}</a>
+    <ThemeToggle lang={lang} />
   </div>
 </aside>

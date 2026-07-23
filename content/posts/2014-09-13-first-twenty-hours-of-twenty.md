@@ -3,6 +3,7 @@ title: "二十岁的第一个二十小时"
 date: 2014-09-13
 quote: "仿佛神灵只在那一刻降临人间，万家灯火中唯独看到书桌前的我，于是毫不吝啬地挥洒下他的祝福。"
 excerpt: "二十岁生日这天什么也没有改变——一个青年在慕尼黑给自己的成年记账。"
+cover: "/assets/images/first-twenty-hours-of-twenty/cover.jpg"
 ---
 
 （一）

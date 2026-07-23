@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import PostListEnglish from '../../components/PostListEnglish.astro';
+import Base from '../../layouts/Base.astro';
+import site from '../../../site.json';
+import { pairEnglishPosts, sortEnglishPairsDesc, sortPostsDesc } from '../../lib/posts';
+
+const posts = sortPostsDesc(await getCollection('posts'));
+const translations = await getCollection('postsEn');
+const pairs = sortEnglishPairsDesc(pairEnglishPosts(posts, translations));
+const firstYear = posts[posts.length - 1]?.data.date.getUTCFullYear();
+---
+<Base
+  title={`Writing — ${site.title}`}
+  description="English translations of Zhonglun Sun's essays and fiction."
+  lang="en"
+  sidebar
+  alternatePath="/"
+>
+  <section class="hero masthead reveal">
+    <p class="masthead-meta">
+      <span>Writing archive · since {firstYear}</span>
+      <span>{pairs.length} of {posts.length} in English</span>
+    </p>
+    <h1>Hi there, I'm Zhonglun, and <em>I write.</em></h1>
+    <div class="rule-double" aria-hidden="true"></div>
+  </section>
+  <main class="home-main magazine">
+    <PostListEnglish pairs={pairs} featured />
+  </main>
+</Base>

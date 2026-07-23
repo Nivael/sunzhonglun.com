@@ -1,8 +1,15 @@
 ---
 import site from '../../site.json';
 const year = new Date().getFullYear();
+interface Props {
+  lang?: 'zh-CN' | 'en';
+}
+const { lang = 'zh-CN' } = Astro.props;
+const english = lang === 'en';
 ---
 <footer class="site-footer">
-  <span>© {year} {site.title} · <a href="/feed.xml">RSS</a></span>
-  <span class="foot-stats" hidden>来访 <b data-stat="uvTotal"></b> 人 · 浏览 <b data-stat="pvTotal"></b> 次</span>
+  <span>© {year} {site.title} · <a href="/feed.xml">{english ? 'RSS (Chinese)' : 'RSS'}</a></span>
+  <span class="foot-stats" hidden>
+    {english ? 'Visitors ' : '来访 '}<b data-stat="uvTotal"></b>{english ? ' · Views ' : ' 人 · 浏览 '}<b data-stat="pvTotal"></b>{english ? '' : ' 次'}
+  </span>
 </footer>

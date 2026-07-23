@@ -1,0 +1,20 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import site from '../../../site.json';
+
+const about = await getEntry('pagesEn', 'about-en');
+if (!about) throw new Error('缺少 content/about-en.md');
+const { Content } = await render(about);
+---
+<Base
+  title={`About — ${site.title}`}
+  description="About Zhonglun Sun and this writing archive."
+  lang="en"
+  alternatePath="/about/"
+>
+  <article class="post">
+    <header class="post-header reveal"><h1>{about.data.title}</h1></header>
+    <div class="post-content"><Content /></div>
+  </article>
+</Base>
