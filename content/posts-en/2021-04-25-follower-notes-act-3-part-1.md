@@ -102,9 +102,9 @@ Very well. Let us return to the autumn of 1858. Elgin was leaving Tianjin with t
 
 The Taiping commanders knew they had caused trouble. Before then, I had warned them repeatedly that we had no chance if we made an enemy of the British. One emergency meeting followed another. Generals and ministers of every kind appeared, possessing every variety of title and accent. At last, the great responsibility fell to me. The Taiping army sent me to negotiate with Elgin and make a friendly overture. A letter written by the Heavenly King to Elgin was placed in my hands. It was an exquisite roll of yellow silk three *cun* long, covered with 172 lines of verse. At the opening, the Heavenly King wrote:
 
-> Father and Elder Brother bring Us to sit in Heaven,  
-> Sweeping away false gods, granting glory.  
-> Western barbarian younger brothers, hear Our decree:  
+> Father and Elder Brother bring Us to sit in Heaven,\
+> Sweeping away false gods, granting glory.\
+> Western barbarian younger brothers, hear Our decree:\
 > Together uphold Father and Brother and destroy the vermin.
 
 At the end of the year, I carried this personal letter to meet Elgin at the port of Anqing. His interpreter, Thomas Wade, burst into laughter when he received it and began improvising a translation. Then Elgin, too, doubled over laughing. "This is the strongest opponent of that fool emperor—a madman," Elgin said.

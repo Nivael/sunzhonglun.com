@@ -104,10 +104,10 @@ I drifted through my old city. The street sweepers had done excellent work. From
 
 In the entire Fountain House, only one woman mourned what had happened. She was a young poet named Akhmatova. She lived in a small apartment in the south wing with a husband who envied her and burned her manuscripts. Her neighbors noticed that in summer she often leaned against an iron railing, one foot braced on the black metal, staring at the peeling yellow-and-white exterior of the Fountain House. That year, news arrived that her former husband had been executed. It kept her awake for long stretches of the night. When she could not sleep, she sat in the center of a room that could scarcely be called a parlor. Alone on a little wooden chair. She let the damp of towels and the mildew of wallpaper envelop her. She felt the Fountain House was filled with classical ghosts, circling, murmuring at her like horseflies. "Tell me why," she whispered, repeating her auditory hallucination. Wrong. There were no others. Every classical soul had been exterminated. Only I wandered around her through the night, while everything else I said brushed past her ear like an old wind. She was immersed in the glory of poetry. As dawn approached, her eyes lit before the distance did. She hummed a new poem:
 
-> Beneath the roof riddled through, we slowly freeze,  
-> while water whispers from the cellar:  
-> "We will abandon the grave and wake everyone.  
-> Clearly, it is nearly time for our blue waves  
+> Beneath the roof riddled through, we slowly freeze,\
+> while water whispers from the cellar:\
+> "We will abandon the grave and wake everyone.\
+> Clearly, it is nearly time for our blue waves\
 > to govern this city."
 
 4.
