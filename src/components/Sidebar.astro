@@ -7,9 +7,8 @@ import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
   lang?: 'zh-CN' | 'en';
-  alternatePath?: string;
 }
-const { lang = 'zh-CN', alternatePath } = Astro.props;
+const { lang = 'zh-CN' } = Astro.props;
 const english = lang === 'en';
 const posts = await getCollection('posts');
 const counts = new Map<string, number>();
@@ -31,11 +30,6 @@ const path = Astro.url.pathname;
       {english ? 'Writing' : '文章'}
     </a>
     <a href={english ? '/en/about/' : '/about/'}>{english ? 'About' : '关于'}</a>
-    {alternatePath && (
-      <a class="language-link" href={alternatePath} lang={english ? 'zh-CN' : 'en'}>
-        {english ? '中文' : 'English'}
-      </a>
-    )}
   </nav>
   {!english && (
     <nav class="side-cats">

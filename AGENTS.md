@@ -21,7 +21,7 @@ src/styles/global.css 全站样式（经 Astro 打包，产出内容哈希文件
 src/scripts/main.js   交互脚本（经 Astro 打包内联）
 src/content.config.ts 内容集合定义（glob loader 指向 content/，复用现有 frontmatter）
 src/layouts/Base.astro 页面骨架（sidebar=true 时为侧栏双栏形态，默认极简顶栏）
-src/components/       Header / Footer / ThemeToggle / Sidebar / PostList / PostListEnglish
+src/components/       Header / Footer / ThemeToggle / LanguageSwitch / Sidebar / PostList / PostListEnglish
 src/pages/            中文路由 + en/ 英文路由 + feed.xml.ts
 src/lib/posts.ts      阅读时长、摘要、slug、日期格式、分类推导（categoryFromTitle）
 tests/                vitest 单元测试（npm test）
@@ -71,6 +71,8 @@ npm test          单元测试（vitest，覆盖 src/lib/posts.ts）
   手机端可见
 - v1.6 英文阅读页沿用 44rem 版心，英文正文行高 1.78；`/en/` 保留杂志首页，
   只展示已完成的逐篇译稿
+- v1.6 双语页面使用 `中文 / EN` 双选项 tab：PC 常驻页面右上，≤540px 独立换行右对齐；
+  没有对应译文时不显示
 
 ## 关键实现细节
 
@@ -99,6 +101,11 @@ npm test          单元测试（vitest，覆盖 src/lib/posts.ts）
 中文稿默认同轮完成四遍校订的英文译稿。v1.4 访问统计线上数字待观察，下一项为 v1.3 视频页。
 
 ## 迭代记录
+
+- **2026-07-23 v1.6 语言切换 tab**：将原单文字语言入口升级为克制的 `中文 / EN` 双选项组件，
+  当前语言以选中态和 `aria-current` 标识。≥1080px 常驻页面右上，窄屏进入顶栏，
+  ≤540px 独立换行右对齐；侧栏不再重复显示入口，无对应译文的页面仍不显示。
+  28 项测试、164 页构建通过；真实 Chrome 覆盖 320–1440px、深色主题、双向跳转与键盘焦点。
 
 - **2026-07-23 v1.5 旧稿题图补全**：定位《玫瑰与花园》及更早 24 篇旧稿无列表题图，
   原因是迁移器只抓正文 `js_content`，未保存公众号 `og:image`，而这些文章正文恰好没有插图。

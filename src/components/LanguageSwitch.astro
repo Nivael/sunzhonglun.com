@@ -1,0 +1,22 @@
+---
+// 双语页面切换：固定显示中文 / EN 两个选项，当前语言用非链接选中态表示
+interface Props {
+  lang?: 'zh-CN' | 'en';
+  alternatePath: string;
+}
+
+const { lang = 'zh-CN', alternatePath } = Astro.props;
+const english = lang === 'en';
+---
+<nav class="language-switch" aria-label={english ? 'Language selection' : '语言选择'}>
+  {english ? (
+    <a class="language-switch__option" href={alternatePath} lang="zh-CN" hreflang="zh-CN">中文</a>
+  ) : (
+    <span class="language-switch__option is-active" lang="zh-CN" aria-current="page">中文</span>
+  )}
+  {english ? (
+    <span class="language-switch__option is-active" lang="en" aria-current="page">EN</span>
+  ) : (
+    <a class="language-switch__option" href={alternatePath} lang="en" hreflang="en">EN</a>
+  )}
+</nav>

@@ -4,6 +4,7 @@
 import site from '../../site.json';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import LanguageSwitch from '../components/LanguageSwitch.astro';
 import Sidebar from '../components/Sidebar.astro';
 // 样式经 Astro 打包产出内容哈希文件名——Vercel 对静态资源发 immutable 缓存，
 // 固定路径会让老访客拿到旧 CSS（v1.2 上线时踩过），哈希路径每次部署自动失效
@@ -63,9 +64,14 @@ const enUrl = lang === 'en' ? canonical : alternate;
 </head>
 <body>
 <div class="progress" aria-hidden="true"><div class="progress__bar"></div></div>
+{alternatePath && (
+  <div class="desktop-language-switch">
+    <LanguageSwitch lang={lang} alternatePath={alternatePath} />
+  </div>
+)}
 {sidebar ? (
   <div class="shell">
-    <Sidebar lang={lang} alternatePath={alternatePath} />
+    <Sidebar lang={lang} />
     <div class="content">
       <Header lang={lang} alternatePath={alternatePath} />
       <slot />

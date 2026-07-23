@@ -1,6 +1,7 @@
 ---
 // 顶栏：窄屏与文章页的导航（侧栏页面在 ≥1080px 时由 CSS 隐藏它）
 import site from '../../site.json';
+import LanguageSwitch from './LanguageSwitch.astro';
 import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
@@ -16,11 +17,7 @@ const english = lang === 'en';
     <a href={english ? '/en/' : '/'}>{english ? 'Writing' : '文章'}</a>
     {!english && <a class="categories-link" href="/categories/">分类</a>}
     <a href={english ? '/en/about/' : '/about/'}>{english ? 'About' : '关于'}</a>
-    {alternatePath && (
-      <a class="language-link" href={alternatePath} lang={english ? 'zh-CN' : 'en'}>
-        {english ? '中文' : 'EN'}
-      </a>
-    )}
     <ThemeToggle lang={lang} />
   </nav>
+  {alternatePath && <LanguageSwitch lang={lang} alternatePath={alternatePath} />}
 </header>
