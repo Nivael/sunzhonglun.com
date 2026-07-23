@@ -16,18 +16,39 @@ interface Props {
   ogType?: string;
   /** 左侧栏形态（首页与分类页） */
   sidebar?: boolean;
+  /** 页面语言；英文译稿使用 en，其余默认中文 */
+  lang?: 'zh-CN' | 'en';
+  /** 存在对应译文/原文时的站内路径，同时用于语言切换与 hreflang */
+  alternatePath?: string;
 }
-const { title, description, ogType = 'website', sidebar = false } = Astro.props;
+const {
+  title,
+  description,
+  ogType = 'website',
+  sidebar = false,
+  lang = 'zh-CN',
+  alternatePath,
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const alternate = alternatePath ? new URL(alternatePath, Astro.site) : undefined;
+const zhUrl = lang === 'zh-CN' ? canonical : alternate;
+const enUrl = lang === 'en' ? canonical : alternate;
 ---
 <!doctype html>
-<html lang="zh-CN">
+<html lang={lang}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content={description}>
 <link rel="canonical" href={canonical}>
+{alternate && (
+  <Fragment>
+    <link rel="alternate" hreflang="zh-CN" href={zhUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={zhUrl} />
+  </Fragment>
+)}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
@@ -44,18 +65,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <div class="progress" aria-hidden="true"><div class="progress__bar"></div></div>
 {sidebar ? (
   <div class="shell">
-    <Sidebar />
+    <Sidebar lang={lang} alternatePath={alternatePath} />
     <div class="content">
-      <Header />
+      <Header lang={lang} alternatePath={alternatePath} />
       <slot />
-      <Footer />
+      <Footer lang={lang} />
     </div>
   </div>
 ) : (
   <Fragment>
-    <Header />
+    <Header lang={lang} alternatePath={alternatePath} />
     <slot />
-    <Footer />
+    <Footer lang={lang} />
   </Fragment>
 )}
 <script src="../scripts/main.js"></script>

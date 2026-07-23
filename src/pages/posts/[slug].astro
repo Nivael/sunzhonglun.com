@@ -12,10 +12,18 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const translations = await getCollection('postsEn');
+const hasTranslation = translations.some((translation) => translation.id === post.id);
 const cat = categoryOf(post);
 const catSlug = CATEGORIES.find((c) => c.name === cat)!.slug;
+const slug = postSlug(post);
 ---
-<Base title={`${post.data.title} — ${site.title}`} description={excerptOf(post)} ogType="article">
+<Base
+  title={`${post.data.title} — ${site.title}`}
+  description={excerptOf(post)}
+  ogType="article"
+  alternatePath={hasTranslation ? `/en/posts/${slug}/` : undefined}
+>
   <article class="post">
     <header class="post-header reveal">
       <h1>{post.data.title}</h1>

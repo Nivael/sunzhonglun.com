@@ -3,6 +3,7 @@ title: "人民街"
 date: 2015-10-24
 quote: "拖啊，拖啊。日子就这样过去。"
 excerpt: "在大理人民街的民宿做小二：遇见理发师、诗人，和一条被时间收留的街。"
+cover: "/assets/images/renmin-street/cover.jpg"
 ---
 
 人民街是大理古城的一条街。它原本叫人民路，我不喜欢。我叫它人民街。

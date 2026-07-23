@@ -3,6 +3,7 @@ title: "黄金时代"
 date: 2014-10-26
 quote: "只有对于大地，落叶才是落叶。对于大树，它们只是树叶的尸体。"
 excerpt: "六个互不相识的人活在同一个美好的早晨里——一组关于黄金时代的切片。"
+cover: "/assets/images/golden-age/cover.jpg"
 ---
 
 1.

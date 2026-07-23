@@ -1,0 +1,19 @@
+---
+title: "The Rose and the Garden"
+quote: "God keeps one eye open and the other closed."
+excerpt: "A fable: roses exchange the sight of their colour for blood, until someone discovers that the petals were black all along."
+---
+
+Imagine a garden. A glass dome covers the sky. God keeps one eye open and the other closed. Roses blossom on either side of the path, the colour of their petals like ambiguous wells. “If you wish to see my colour clearly,” they say, “you must exchange for it the blood of your finger.” The formal contract goes as follows: first a person cuts open an index finger; the blood falls upon the petals and flows into the thorned roots. The petals then reveal their colour, but promise nothing in return. The arrangement resembles the business of wanderers at the frontier: your sincerity does not necessarily move them. This is precisely why you are curious about the grey pouches at their waists.
+
+In the daily repetition of this transaction, people happened upon a shortcut that spared them pain. This time, however, there was no serpent to tempt them, and so they listed the innovation among their own inventions: “Sin enlightened us. Therefore we are free.” They wrote the secret of the shortcut upon the road, like white paint on asphalt directing vehicles to turn right. It took the form of a clumsy incantation: “The world is a person's garden.” By the time passers-by, eager to decipher it, applied it to the windmills stalled outside their homes and their blunted wooden saws, the curse was already upon them.
+
+The inventor of the secret was, of course, an ordinary person, some Florentine or Chang'an eccentric. But the incantation he carved did not belong to him. Everyone under its curse was certain that freedom awaited them; yet of all the things they possessed and all the things they were about to plunder, perhaps only their bodies could barely be called free.
+
+One widely praised interpretation held that the ancient ritual was unnecessary, that the whispering of the roses came not from pride but from supplication. Some brave souls, thus enlightened, tried to sever a rose with long silver fingernails at the very instant it recited the contract. A green liquid ran from its neck. Its petals immediately disclosed the truth: black. Black as a well.
+
+The observation of the brave was confirmed by experiments in physics and biology: black was indeed the petals' original colour. Their ambiguity from a distance had to do with the construction of the glass dome. “If you seek the truth, you should not trust only your own eyes.” Before dawn on the day after the report appeared, everyone's eyes confessed that they had deceived their owners. After sunrise, every rose in the garden turned black.
+
+Heidegger read the essence of the incantation. It lay not in the world, nor in the person, nor even in the garden. Its essence resided in that simplest of predicates. The incantation was a conspiracy of language. It had lain in wait ever since people invented language in their attempt to describe things. It was language that seduced them into realising they had the right to compare one thing to another.
+
+At the very moment Heidegger broke the spell, chemists had already refined petroleum from the green liquid in the roses' necks. This did not discourage him. He quoted Hölderlin: “Where danger is, there also grows the saving power.” He had noticed a man who called himself the saviour. The man named himself the true gardener, an artist, the one who would restore the garden to its former glory. In his left hand he held a torch; in his right, a barrel of petroleum refined from the roses' necks. His body was like a burning shadow, forever changing shape and appearance. He loudly counted down, his gaze fixed upon the glass dome. But God never opened his eye.

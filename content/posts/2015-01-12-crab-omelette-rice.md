@@ -3,6 +3,7 @@ title: "滑蛋蟹肉饭"
 date: 2015-01-12
 quote: "出了隧道，天高山远，星辰漫天。"
 excerpt: "一道招牌滑蛋蟹肉饭背后的秘密——一场倒时差失败后的荒诞噩梦。"
+cover: "/assets/images/crab-omelette-rice/cover.jpg"
 ---
 
 1.

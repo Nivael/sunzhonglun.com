@@ -1,9 +1,16 @@
 (function () {
   // 深色模式切换（顶栏与侧栏可能各有一个按钮）
+  var updateThemeLabels = function (theme) {
+    document.querySelectorAll('.theme-toggle').forEach(function (toggle) {
+      toggle.setAttribute('aria-label', toggle.getAttribute(theme === 'dark' ? 'data-label-light' : 'data-label-dark'));
+    });
+  };
+  updateThemeLabels(document.documentElement.getAttribute('data-theme'));
   document.querySelectorAll('.theme-toggle').forEach(function (toggle) {
     toggle.addEventListener('click', function () {
       var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
+      updateThemeLabels(next);
       try { localStorage.setItem('theme', next); } catch (e) {}
     });
   });

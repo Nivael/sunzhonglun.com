@@ -1,0 +1,67 @@
+---
+// 英文首页只展示已经逐篇完成的译稿；日期、分类与封面从中文源稿取，
+// 译文仅负责英文标题、引文、trailer 与正文，避免双份元数据漂移。
+import type { EnglishPostPair } from '../lib/posts';
+import {
+  categoryNameEn,
+  categoryOf,
+  coverImage,
+  dateISO,
+  postSlug,
+  readingMinutes,
+} from '../lib/posts';
+
+interface Props {
+  pairs: EnglishPostPair[];
+  featured?: boolean;
+}
+const { pairs, featured = false } = Astro.props;
+const head = featured ? pairs[0] : undefined;
+const rest = featured ? pairs.slice(1) : pairs;
+const headImg = head ? coverImage(head.source) : null;
+---
+{head && (
+  <a class="feature-card reveal" href={`/en/posts/${postSlug(head.source)}/`}>
+    {headImg && (
+      <figure class="feature-media" data-parallax>
+        <img src={headImg} alt="" decoding="async" />
+      </figure>
+    )}
+    <div class="feature-body">
+      <div class="card-overline">
+        <span class="cat">{categoryNameEn(categoryOf(head.source))}</span> · {dateISO(head.source.data.date)} · {readingMinutes(head.translation.body ?? '')} min read · Latest
+      </div>
+      <h2 class="card-title">{head.translation.data.title}</h2>
+      <div class="feature-aside">
+        <p class="post-quote">“{head.translation.data.quote}”</p>
+        <p class="post-excerpt">{head.translation.data.excerpt}</p>
+      </div>
+    </div>
+  </a>
+)}
+<ul class="post-grid">
+  {rest.map(({ source, translation }) => {
+    const img = coverImage(source);
+    return (
+      <li class="grid-item reveal">
+        <a class="grid-card" href={`/en/posts/${postSlug(source)}/`}>
+          {img ? (
+            <figure class="card-media">
+              <img src={img} alt="" loading="lazy" decoding="async" />
+            </figure>
+          ) : (
+            <div class="card-plate">
+              <p>“{translation.data.quote}”</p>
+            </div>
+          )}
+          <div class="card-overline">
+            <span class="cat">{categoryNameEn(categoryOf(source))}</span> · {dateISO(source.data.date)} · {readingMinutes(translation.body ?? '')} min read
+          </div>
+          <h2 class="card-title">{translation.data.title}</h2>
+          {img && <p class="post-quote">“{translation.data.quote}”</p>}
+          <p class="post-excerpt">{translation.data.excerpt}</p>
+        </a>
+      </li>
+    );
+  })}
+</ul>

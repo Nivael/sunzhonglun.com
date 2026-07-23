@@ -3,6 +3,7 @@ title: "徐纯合和Freddie Grey"
 date: 2015-05-08
 quote: "你想他们也许都有过快乐时光。"
 excerpt: "相隔十三天，两个大陆各死了一个人——把徐纯合与 Freddie Gray 并排放在一起读。"
+cover: "/assets/images/xu-chunhe-and-freddie-gray/cover.jpg"
 ---
 
 Freddie Gray在4月19日死了。

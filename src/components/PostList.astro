@@ -1,9 +1,9 @@
 ---
-// 文章列表（v1.4 杂志网格）：首页与分类页共用。
+// 文章列表（v1.5 杂志网格）：首页与分类页共用。
 // featured=true（首页）时最新一篇为通栏 feature，其余进两栏网格（≥1360px 三栏，窄屏单栏）。
-// 封面 = 正文首图（firstImage 推导）；无图文章以 quote 排版块代位，图卡与字卡混排。
+// 封面 = cover 题图优先、正文首图后备；无图文章以 quote 排版块代位。
 import type { Post } from '../lib/posts';
-import { categoryOf, dateISO, excerptOf, firstImage, postSlug, readingMinutes } from '../lib/posts';
+import { categoryOf, coverImage, dateISO, excerptOf, postSlug, readingMinutes } from '../lib/posts';
 
 interface Props {
   posts: Post[];
@@ -12,7 +12,7 @@ interface Props {
 const { posts, featured = false } = Astro.props;
 const head = featured ? posts[0] : undefined;
 const rest = featured ? posts.slice(1) : posts;
-const headImg = head ? firstImage(head.body ?? '') : null;
+const headImg = head ? coverImage(head) : null;
 ---
 {head && (
   <a class="feature-card reveal" href={`/posts/${postSlug(head)}/`}>
@@ -35,7 +35,7 @@ const headImg = head ? firstImage(head.body ?? '') : null;
 )}
 <ul class="post-grid">
   {rest.map((p) => {
-    const img = firstImage(p.body ?? '');
+    const img = coverImage(p);
     return (
       <li class="grid-item reveal">
         <a class="grid-card" href={`/posts/${postSlug(p)}/`}>

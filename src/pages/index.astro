@@ -1,5 +1,5 @@
 ---
-// 首页（v1.4 杂志化）：报刊式 masthead + 最新一篇通栏 feature + 杂志网格
+// 首页（v1.5 杂志化）：报刊式 masthead + 最新一篇通栏 feature + 杂志网格
 import { getCollection } from 'astro:content';
 import PostList from '../components/PostList.astro';
 import Base from '../layouts/Base.astro';
@@ -9,7 +9,7 @@ import { sortPostsDesc } from '../lib/posts';
 const posts = sortPostsDesc(await getCollection('posts'));
 const firstYear = posts[posts.length - 1]?.data.date.getUTCFullYear();
 ---
-<Base title={site.title} description={site.description} sidebar>
+<Base title={site.title} description={site.description} sidebar alternatePath="/en/">
   <section class="hero masthead reveal">
     <p class="masthead-meta">
       <span>写作存档 · {firstYear} 年创刊</span>

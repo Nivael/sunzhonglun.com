@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   categoryBySlug,
   categoryFromTitle,
+  coverImage,
   dateDisplay,
   dateISO,
   firstImage,
@@ -71,7 +72,7 @@ describe('日期格式：UTC 取值，避免东八区偏移', () => {
     expect(pubDate(d)).toBe('Thu, 11 Jun 2026 00:00:00 +0800'));
 });
 
-describe('firstImage：正文首图作杂志网格封面', () => {
+describe('firstImage：推导正文首张站内图片', () => {
   it('取第一张站内图片', () => {
     expect(firstImage('开头\n\n![](/assets/images/a/1.jpg)\n\n![](/assets/images/a/2.jpg)')).toBe('/assets/images/a/1.jpg');
   });
@@ -83,5 +84,23 @@ describe('firstImage：正文首图作杂志网格封面', () => {
   });
   it('无图返回 null', () => {
     expect(firstImage('纯文字段落而已')).toBeNull();
+  });
+});
+
+describe('coverImage：显式题图优先、正文首图后备', () => {
+  it('有 cover 时优先使用公众号题图', () => {
+    expect(coverImage({
+      data: { cover: '/assets/images/a/cover.jpg' },
+      body: '![](/assets/images/a/01.jpg)',
+    })).toBe('/assets/images/a/cover.jpg');
+  });
+  it('没有 cover 时使用正文首图', () => {
+    expect(coverImage({
+      data: {},
+      body: '![](/assets/images/a/01.jpg)',
+    })).toBe('/assets/images/a/01.jpg');
+  });
+  it('两者都没有时返回 null', () => {
+    expect(coverImage({ data: {}, body: '纯文字' })).toBeNull();
   });
 });
