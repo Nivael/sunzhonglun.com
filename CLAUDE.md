@@ -21,7 +21,7 @@ src/styles/global.css 全站样式（经 Astro 打包，产出内容哈希文件
 src/scripts/main.js   交互脚本（经 Astro 打包内联）
 src/content.config.ts 内容集合定义（glob loader 指向 content/，复用现有 frontmatter）
 src/layouts/Base.astro 页面骨架（sidebar=true 时为侧栏双栏形态，默认极简顶栏）
-src/components/       Header / Footer / ThemeToggle / LanguageSwitch / Sidebar / PostList / PostListEnglish
+src/components/       Header / Footer / ThemeToggle / LanguageSwitch / Sidebar / PostList / PostListEnglish / Cover
 src/pages/            中文路由 + en/ 英文路由 + feed.xml.ts
 src/lib/posts.ts      阅读时长、摘要、slug、日期格式、分类推导（categoryFromTitle）
 tests/                vitest 单元测试（npm test）
@@ -69,6 +69,8 @@ npm test          单元测试（vitest，覆盖 src/lib/posts.ts）
   封面/字卡 clip-path 滚动显影（随 .reveal 触发）
 - v1.5 来访量露出：页脚 .foot-stats 与侧栏 .side-stats 同源填充（main.js 一次请求两处），
   手机端可见
+- v1.7 入口封面（中英首页）：Cover.astro——《去创造》线条海 canvas 程序化重绘（种子 2006），
+  小方块随浪漂浮，「进 入/ENTER」滚动到刊头；滚出视口暂停，reduced-motion 静止，主题切换即时重绘
 - v1.6 英文阅读页沿用 44rem 版心，英文正文行高 1.78；`/en/` 保留杂志首页，
   只展示已完成的逐篇译稿
 - v1.6 双语页面的 PC / 平板使用 `中文 / EN` 双选项 tab；≤540px 改为顶栏内单一目标语言
@@ -99,11 +101,17 @@ npm test          单元测试（vitest，覆盖 src/lib/posts.ts）
 
 ## 待办
 
-见 [docs/PRD.md](docs/PRD.md) §3 版本路线图。当前：**v1.5 杂志化改版**与
-**v1.6 英文版**均已合并上线；英文版 77/77 篇存量译稿完成，翻译 backlog 清零，今后新增
-中文稿默认同轮完成四遍校订的英文译稿。v1.4 访问统计线上数字待观察，下一项为 v1.3 视频页。
+见 [docs/PRD.md](docs/PRD.md) §3 版本路线图。当前：**v1.7 入口封面**开发完成待验收
+（见 PRD §7.8）；v1.5 杂志化、v1.6 英文版已合并上线（英文版 77/77 篇存量译稿完成，
+翻译 backlog 清零，今后新增中文稿默认同轮完成四遍校订的英文译稿）。
+v1.4 访问统计线上数字待观察，随后为 v1.3 视频页。
 
 ## 迭代记录
+
+- **2026-07-24 v1.7 入口封面（开发完成，待验收合并）**：《去创造》线条海作全站入口——
+  中英首页顶部 100svh 通栏 Cover.astro，canvas 程序化重绘题图（种子 2006，原图未落盘故以代码重建），
+  小方块贴浪漂浮，底部说明行 + 计数动画 + 「进 入」平滑滚动至刊头。滚出视口暂停、
+  reduced-motion 静止、主题切换即时重绘。详见 PRD §7.8。
 
 - **2026-07-24 v1.6 移动端语言入口重设计**：PC / 平板保留 `中文 / EN` 双选项，
   手机端移除另占一行的胶囊页签，改为顶栏内只显示目标语言的轻量文字入口。

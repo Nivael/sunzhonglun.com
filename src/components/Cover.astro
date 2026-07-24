@@ -1,0 +1,177 @@
+---
+// 入口封面（v1.7）：《去创造》线条海——程序化重绘，任意分辨率清晰。
+// canvas 实时绘制：上疏下密的虚线渐变为波浪，绿色小方块随浪漂浮（rAF，
+// reduced-motion 下静止一帧）。底部说明行 + 「进 入」按钮平滑滚动到刊头。
+// 视觉与文案来源：content/posts/2026-07-19-go-create.md 的题图。中英首页共用（lang 切换文案）。
+import { getCollection } from 'astro:content';
+
+interface Props {
+  lang?: 'zh' | 'en';
+}
+const { lang = 'zh' } = Astro.props;
+const count = (await getCollection('posts')).length;
+const padded = String(count).padStart(6, '0');
+const t = lang === 'en'
+  ? { label: 'Cover: Go Create', enter: 'ENTER', enterAria: 'Enter the archive', title: 'GO CREATE' }
+  : { label: '封面：去创造', enter: '进 入', enterAria: '进入文章列表', title: '去 创 造' };
+---
+<section class="cover" aria-label={t.label}>
+  <canvas class="cover-sea" aria-hidden="true"></canvas>
+  <button class="cover-enter" type="button" aria-label={t.enterAria}>
+    {t.enter}<span class="cover-arrow" aria-hidden="true">↓</span>
+  </button>
+  <p class="cover-caption" aria-hidden="true">
+    <span>EST. 2006 · WWW</span>
+    <span class="cover-title">{t.title}</span>
+    <span class="cover-counter">000000 → <b data-count={padded}>000000</b></span>
+  </p>
+</section>
+
+<script>
+  // ---- 线条海：与题图同源的程序化绘制（种子随机，可复现） ----
+  const cover = document.querySelector('.cover') as HTMLElement | null;
+  const canvas = cover?.querySelector('.cover-sea') as HTMLCanvasElement | null;
+  if (cover && canvas) {
+    const ctx = canvas.getContext('2d')!;
+    const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // mulberry32：种子 2006（第一篇博客的年份）
+    function rng(seed: number) {
+      return function () {
+        seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+        let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+
+    type Row = { t: number; y0: number; amp: number; ph: number[]; fr: number[]; seg: { a: number; b: number }[]; lw: number; al: number };
+    let rows: Row[] = [];
+    let W = 0, H = 0, dpr = 1;
+
+    function theme() {
+      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      return dark
+        ? { paper: '#121212', ink: '#c9cdd3', accent: '#4cc2a4' }
+        : { paper: '#f7f6f1', ink: '#2b3440', accent: '#147d64' };
+    }
+
+    function build() {
+      const r = rng(2006);
+      W = cover!.clientWidth; H = cover!.clientHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas!.width = Math.round(W * dpr); canvas!.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      rows = [];
+      const R = Math.max(44, Math.round(H / 16));
+      for (let i = 0; i < R; i++) {
+        const t = i / (R - 1);
+        // 分段虚线：顶部碎、越往下越连贯
+        const seg: { a: number; b: number }[] = [];
+        let x = -0.02;
+        const frag = Math.pow(1 - t, 1.6); // 顶部碎裂程度
+        while (x < 1.02) {
+          const dash = 0.015 + r() * (0.03 + t * 0.22);
+          const gap = frag * (0.01 + r() * 0.09) + 0.002;
+          seg.push({ a: x, b: Math.min(x + dash, 1.02) });
+          x += dash + gap;
+        }
+        rows.push({
+          t,
+          y0: 0.08 + t * 0.76,
+          amp: Math.pow(t, 2.1) * (H * 0.028) * (0.6 + r() * 0.8),
+          ph: [r() * 6.28, r() * 6.28, r() * 6.28],
+          fr: [1.5 + r() * 2, 3 + r() * 3.5, 6 + r() * 5],
+          seg,
+          lw: 0.7 + t * 1.05,
+          al: 0.42 + t * 0.55,
+        });
+      }
+    }
+
+    function waveY(row: Row, nx: number, time: number) {
+      return row.y0 * H
+        + row.amp * (Math.sin(nx * row.fr[0] * 3.14 + row.ph[0] + time * 0.35)
+        + 0.5 * Math.sin(nx * row.fr[1] * 3.14 + row.ph[1] - time * 0.22)
+        + 0.25 * Math.sin(nx * row.fr[2] * 3.14 + row.ph[2] + time * 0.5));
+    }
+
+    // 小方块所在的浪线（约上三分之一处）与水平位置
+    const SQ = { row: 0.30, x: 0.645 };
+
+    function draw(time: number) {
+      const c = theme();
+      ctx.fillStyle = c.paper;
+      ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = c.ink;
+      ctx.lineCap = 'round';
+      const step = Math.max(4, W / 320);
+      for (const row of rows) {
+        ctx.lineWidth = row.lw;
+        ctx.globalAlpha = row.al;
+        for (const s of row.seg) {
+          ctx.beginPath();
+          const x0 = s.a * W, x1 = s.b * W;
+          for (let x = x0; x <= x1 + 0.1; x += step) {
+            const nx = x / W;
+            const y = waveY(row, nx, time);
+            x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        }
+      }
+      // 绿色小方块：贴着某条浪线漂浮，轻微摇摆
+      const row = rows[Math.round(SQ.row * (rows.length - 1))];
+      const bobX = SQ.x + Math.sin(time * 0.13) * 0.012;
+      const y = waveY(row, bobX, time);
+      const s = Math.max(14, W * 0.0125);
+      ctx.globalAlpha = 1;
+      ctx.save();
+      ctx.translate(bobX * W, y - s * 0.62);
+      ctx.rotate(Math.sin(time * 0.4 + 1) * 0.05);
+      ctx.fillStyle = c.accent;
+      ctx.fillRect(-s / 2, -s / 2, s, s);
+      ctx.restore();
+      ctx.globalAlpha = 1;
+    }
+
+    let raf = 0, running = false;
+    const loop = (ms: number) => { draw(ms / 1000); raf = requestAnimationFrame(loop); };
+    const start = () => { if (!running && motionOK) { running = true; raf = requestAnimationFrame(loop); } };
+    const stop = () => { running = false; cancelAnimationFrame(raf); };
+
+    build(); draw(0.001);
+    if (motionOK) {
+      start();
+      // 滚出视口即暂停，省电
+      new IntersectionObserver((en) => (en[0].isIntersecting ? start() : stop()), { threshold: 0.02 }).observe(cover);
+    }
+    let rT: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(() => { build(); draw(0.001); }, 150); });
+    // 主题切换即时重绘（静止态）
+    new MutationObserver(() => { if (!running) draw(0.001); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    // ---- 计数器：000000 → 总篇数 ----
+    const b = cover.querySelector('.cover-counter b') as HTMLElement | null;
+    if (b) {
+      const target = parseInt(b.dataset.count || '0', 10);
+      if (!motionOK) { b.textContent = String(target).padStart(6, '0'); }
+      else {
+        const t0 = performance.now();
+        const tick = (now: number) => {
+          const p = Math.min((now - t0) / 1800, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          b.textContent = String(Math.round(target * eased)).padStart(6, '0');
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+    }
+
+    // ---- 进入：平滑滚动到刊头 ----
+    cover.querySelector('.cover-enter')?.addEventListener('click', () => {
+      const dest = document.querySelector('.masthead') || document.querySelector('main');
+      dest?.scrollIntoView({ behavior: motionOK ? 'smooth' : 'auto' });
+    });
+  }
+</script>
