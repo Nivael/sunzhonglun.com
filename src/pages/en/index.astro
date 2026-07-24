@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import Cover from '../../components/Cover.astro';
 import PostListEnglish from '../../components/PostListEnglish.astro';
 import Base from '../../layouts/Base.astro';
 import site from '../../../site.json';
@@ -17,6 +18,7 @@ const firstYear = posts[posts.length - 1]?.data.date.getUTCFullYear();
   sidebar
   alternatePath="/"
 >
+  <Cover lang="en" />
   <section class="hero masthead reveal">
     <p class="masthead-meta">
       <span>Writing archive · since {firstYear}</span>
