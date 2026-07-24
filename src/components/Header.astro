@@ -14,9 +14,10 @@ const english = lang === 'en';
 <header class="site-header">
   <a class="site-logo" href={english ? '/en/' : '/'}>{site.title}</a>
   <nav>
-    <a href={english ? '/en/' : '/'}>{english ? 'Writing' : '文章'}</a>
+    <a class="writing-link" href={english ? '/en/' : '/'}>{english ? 'Writing' : '文章'}</a>
     {!english && <a class="categories-link" href="/categories/">分类</a>}
     <a href={english ? '/en/about/' : '/about/'}>{english ? 'About' : '关于'}</a>
+    {alternatePath && <LanguageSwitch compact lang={lang} alternatePath={alternatePath} />}
     <ThemeToggle lang={lang} />
   </nav>
   {alternatePath && <LanguageSwitch lang={lang} alternatePath={alternatePath} />}

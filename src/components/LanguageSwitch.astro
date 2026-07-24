@@ -1,22 +1,35 @@
 ---
-// 双语页面切换：固定显示中文 / EN 两个选项，当前语言用非链接选中态表示
+// 双语页面切换：PC 显示双选项，移动端 compact 形态只显示目标语言
 interface Props {
   lang?: 'zh-CN' | 'en';
   alternatePath: string;
+  compact?: boolean;
 }
 
-const { lang = 'zh-CN', alternatePath } = Astro.props;
+const { lang = 'zh-CN', alternatePath, compact = false } = Astro.props;
 const english = lang === 'en';
 ---
-<nav class="language-switch" aria-label={english ? 'Language selection' : '语言选择'}>
-  {english ? (
-    <a class="language-switch__option" href={alternatePath} lang="zh-CN" hreflang="zh-CN">中文</a>
-  ) : (
-    <span class="language-switch__option is-active" lang="zh-CN" aria-current="page">中文</span>
-  )}
-  {english ? (
-    <span class="language-switch__option is-active" lang="en" aria-current="page">EN</span>
-  ) : (
-    <a class="language-switch__option" href={alternatePath} lang="en" hreflang="en">EN</a>
-  )}
-</nav>
+{compact ? (
+  <a
+    class="language-switch--compact"
+    href={alternatePath}
+    lang={english ? 'zh-CN' : 'en'}
+    hreflang={english ? 'zh-CN' : 'en'}
+    aria-label={english ? '切换到中文' : 'Switch to English'}
+  >
+    {english ? '中' : 'EN'}
+  </a>
+) : (
+  <nav class="language-switch" aria-label={english ? 'Language selection' : '语言选择'}>
+    {english ? (
+      <a class="language-switch__option" href={alternatePath} lang="zh-CN" hreflang="zh-CN">中文</a>
+    ) : (
+      <span class="language-switch__option is-active" lang="zh-CN" aria-current="page">中文</span>
+    )}
+    {english ? (
+      <span class="language-switch__option is-active" lang="en" aria-current="page">EN</span>
+    ) : (
+      <a class="language-switch__option" href={alternatePath} lang="en" hreflang="en">EN</a>
+    )}
+  </nav>
+)}

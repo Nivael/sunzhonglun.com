@@ -74,6 +74,7 @@ a.language-switch__option:focus-visible {
   box-shadow: 0 1px 3px rgba(0, 0, 0, .09);
 }
 [data-theme="dark"] .language-switch__option.is-active { box-shadow: 0 1px 4px rgba(0, 0, 0, .35); }
+.language-switch--compact { display: none; }
 .desktop-language-switch { display: none; }
 .theme-toggle {
   background: none; border: none; cursor: pointer;
@@ -300,15 +301,31 @@ a.cat:hover { background: var(--accent-soft); }
 @media (max-width: 540px) {
   .site-header {
     grid-template-columns: auto 1fr;
-    gap: .7rem 1rem;
+    gap: .75rem;
     padding-inline: 1rem;
   }
-  .site-header > nav { gap: .85rem; }
-  .site-header > .language-switch { grid-column: 1 / -1; justify-self: end; }
+  .site-header > nav { gap: .65rem; }
+  .site-header > .language-switch { display: none; }
+  .site-header .language-switch--compact {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 1.4rem; padding: .3rem .12rem .22rem;
+    border-bottom: 1px solid currentColor;
+    color: var(--accent); font-size: .7rem; line-height: 1;
+    letter-spacing: .04em;
+  }
+  .site-header .language-switch--compact:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 3px; border-bottom-color: transparent;
+  }
+  .site-header .writing-link,
   .site-header .categories-link { display: none; }
   .hero h1 { font-size: 1.7rem; }
   .masthead h1 { font-size: 1.9rem; }
   .post-header h1 { font-size: 1.65rem; }
   .post-content { font-size: 1.06rem; }
   .card-title { font-size: 1.25rem; }
+}
+@media (max-width: 360px) {
+  .site-header { gap: .5rem; }
+  .site-logo { font-size: 1.05rem; }
+  .site-header > nav { gap: .45rem; font-size: .82rem; }
 }
